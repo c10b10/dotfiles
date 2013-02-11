@@ -888,8 +888,9 @@ nnoremap <leader>cfr :CoffeeRun<cr>
 
 let g:session_directory='~/.vim/sessions'
 let g:session_autoload='yes'
-let g:session_autosave='yes'
+" let g:session_autosave='yes'
 let g:session_default_to_last=1
+nmap <localleader>ss :SaveSession<cr>
 
 " }}}
 " Gist {{{
