@@ -578,6 +578,10 @@ nnoremap Vaa ggVG
 " if you do you'll probably want to use another mark.
 inoremap <C-u> <esc>mzgUiw`za
 
+" Substitute
+nnoremap <leader>r :%s//<left>
+vnoremap <leader>r :s//<left>
+
 " Panic Button!!!
 nnoremap <f9> mzggg?G`z
 
@@ -890,7 +894,7 @@ let g:session_directory='~/.vim/sessions'
 let g:session_autoload='yes'
 " let g:session_autosave='yes'
 let g:session_default_to_last=1
-nmap <localleader>ss :SaveSession<cr>
+nmap <F10> :SaveSession<cr>
 
 " }}}
 " Gist {{{
