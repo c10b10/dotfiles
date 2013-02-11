@@ -892,6 +892,19 @@ let g:session_autosave='yes'
 let g:session_default_to_last=1
 
 " }}}
+" Gist {{{
+
+cnoreabbrev g Gist
+cnoreabbrev gist Gist -p
+cnoreabbrev gistl Gist -l
+let g:gist_clip_command = 'pbcopy'
+let g:gist_detect_filteyype = 1
+let g:gist_open_browser_after_post = 0
+let g:gist_show_privates = 1
+" Update Gist only with :w!
+let g:gist_update_on_write = 2
+
+" }}}
 
 " }}}
 " Text objects ------------------------------------------------------------ {{{
@@ -1199,13 +1212,8 @@ function! HiInterestingWord(n) " {{{
     " Clear existing matches, but don't worry if they don't exist.
     silent! call matchdelete(mid)
 
-	" TODO: Horrible hack because I don't know what I'm doing here
-	if ( @z == '{{{' )
-		let pat = '{{{'
-	else
-		" Construct a literal pattern that has to match at boundaries.
-		let pat = '\V\<' . escape(@z, '\') . '\>'
-	endif
+	" Construct a literal pattern that has to match at boundaries.
+	let pat = '\V\<' . escape(@z, '\') . '\>'
 
     " Actually match the words.
     call matchadd("InterestingWord" . a:n, pat, 1, mid)
@@ -1213,7 +1221,6 @@ function! HiInterestingWord(n) " {{{
     " Move back to our original location.
     normal! `z
 endfunction " }}}
-
 " Mappings {{{
 
 nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
@@ -1233,6 +1240,24 @@ hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
+" }}}
+
+" }}}
+" Open URL in Browser {{{
+
+" Works in MAC OS X
+function! HandleURI() "{{{
+  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;:]*')
+  echo s:uri
+  if s:uri != ""
+	  exec "!open \"" . s:uri . "\""
+  else
+	  echo "No URI found in line."
+  endif
+endfunction " }}}
+map <localleader>u :call HandleURI()<CR>
+" Linux {{{
+" nnoremap <localleader>u :silent !xdg-open <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
 " }}}
 
 " }}}

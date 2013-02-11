@@ -89,6 +89,8 @@ Bundle 'vim-scripts/taglist.vim'
 
 " }}}
 " Gist plugin {{{
+" Requirement
+Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 " }}}
 " Vim-Session: Session management {{{
