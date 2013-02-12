@@ -1,0 +1,9 @@
+-R
+--languages=php
+--exclude=.svn
+--tag-relative=yes
+--regex-PHP=/abstract\s+class\s+([^ ]+)/\1/c/
+--regex-PHP=/interface\s+([^ ]+)/\1/c/
+--regex-PHP=/const\s+([^ \t=]+)/\1/d/
+--regex-PHP=/(public\s+|static\s+|protected\s+|private\s+)\$([^     =]+)/\2/p/
+--PHP-kinds=+cpdf-v
