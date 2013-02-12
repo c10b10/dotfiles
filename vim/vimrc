@@ -868,7 +868,21 @@ call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 " ctags {{{
 
 " Generate ctags in current directory
-nmap <leader>tt :!ctags -R --languages=php .
+nmap <leader>tt :!ctags<cr>
+
+" }}}
+" Tag List {{{
+
+" Set the names of flags
+let tlist_php_settings = 'php;c:class;f:function;d:constant'
+" Close all folds except for current file
+let Tlist_File_Fold_Auto_Close = 1
+" Make tlist pane active when opened
+let Tlist_GainFocus_On_ToggleOpen = 1
+" Width of window
+let Tlist_WinWidth = 40
+" Close tlist when a selection is made
+let Tlist_Close_On_Select = 1
 
 " }}}
 " Vim {{{
