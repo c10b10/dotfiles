@@ -21,6 +21,7 @@ Bundle 'vim-scripts/PDV--phpDocumentor-for-Vim'
 Bundle 'Lokaltog/vim-powerline'
 
 " }}}
+"
 " Surround: Manage surrounding {{{
 
 Bundle 'tpope/vim-surround'
@@ -105,7 +106,7 @@ Bundle 'bronson/vim-trailing-whitespace'
 " }}}
 " Syntastic: Syntax errors highlighter {{{
 
-Bundle 'c10b10/syntastic'
+Bundle 'scrooloose/syntastic'
 
 " }}}
 " Syntax extenders {{{
@@ -148,12 +149,33 @@ Bundle 'kana/vim-smartinput'
 " }}}
 " CtrlP {{{
 
-	Bundle 'kien/ctrlp.vim'
+Bundle 'kien/ctrlp.vim'
+
+" }}}
+" Ack {{{
+
+Bundle 'mileszs/ack.vim'
+
+" }}}
+" ZoomWin {{{
+
+Bundle 'ZoomWin'
 
 " }}}
 
+
 " === Inactive
 
+" Twitter {{{
+
+" Bundle 'vim-scripts/TwitVim'
+
+" }}}
+" LiveReload {{{
+
+" Bundle 'flomotlik/vim-livereload'
+
+" }}}
 " Sudo-GUI: Sudo Save from VIM {{{
 
 	" Replaced by w!!

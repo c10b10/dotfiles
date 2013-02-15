@@ -56,11 +56,10 @@ set linebreak " Wrap long lines at characters in 'breakat'
 set laststatus=2 "Always show the status line
 set synmaxcol=800 " Don't highlight lines longer than 800 characters.
 set dictionary=/usr/share/dict/words
-set spellfile=~/.vim/custom-dictionary.utf-8.add
+set spellfile+=~/.vim/custom-dictionary.utf-8.add
 set autowrite
 set autoread
 set mousehide "Hide mouse when typing
-set autoread
 
 set sessionoptions=resize,winpos,winsize,buffers,tabpages,folds,curdir,help "Session settings
 
@@ -115,7 +114,8 @@ augroup END
 " }}} [/Cursorline]
 " Tabs, spaces, wrapping {{{
 
-" set expandtab
+set expandtab
+au BufNewFile,BufRead *.php setlocal noexpandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -477,8 +477,10 @@ source ~/.vim/rc_extras/secret.vim
 
 " Work stuff {{{
 
-nmap ,vv /\.\.<cr>jjjjjjCnjjjjCnjjjjC
-nmap ,ii :NERDTree<cr>/\.\.<cr>jjjjjjjCnjjjjCnjjjC
+nmap <localleader>w3 5ggC4ggC4ggC5gg
+nmap <localleader>vp /wp-content<cr>C/ plugins<cr>C<leader><space>
+nmap <localleader>vt /wp-content<cr>C/themes<cr>C<leader><space>
+" nmap ,ii :NERDTree<cr>/\.\.<cr>jjjjjjjCnjjjjCnjjjC
 
 " Returns the functions and its description in a table format
 let @q='/function viwlwf{hlF)"oy?/\*\*0jf*wv$"py/functionjmagg"opuo"op0diwxvf)S`A | "pp`a'
@@ -490,9 +492,14 @@ let @e='/^functionwvw%"oyma?/\*\*jwwv$h"pyggo"opva(:klklklklklsilen
 noremap  <F1> :set invfullscreen<CR>
 inoremap <F1> <ESC>:set invfullscreen<CR>a
 
-" Saves time; maps the spacebar to colon
+" Saves time.
 nmap ; :
 vmap ; :
+nmap <leader>b :b<space>
+
+" Open gist with the id under the cursor
+cnoreabbrev gst/ https://gist.github.com/
+nmap ,og viW"gy:!open gst/ <bs><C-r>g<cr>
 
 " CD to the directory containing the file in the buffer
 nmap <silent> <leader>cd :lcd %:h<CR>
@@ -702,7 +709,8 @@ call MakeSpacelessIabbrev('secho', 'echo <<<EOL<Right><Right><Right><Backspace><
 "
 nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>eb :tabedit ~/.vim/rc_extras/vundles.vim<cr>
-nnoremap <leader>es :tabedit ~/.vim/vim-shortcuts.txt<cr>
+nnoremap <leader>eh :tabedit ~/.vim/vim-shortcuts.txt<cr>
+nnoremap <leader>es :tabedit ~/.vim/rc_extras/secret.vim<cr>
 
 " }}}
 " Plugins ------------------------------------------------------------ {{{
@@ -744,7 +752,9 @@ endfunction " }}}
 " }}}
 " Syntastic {{{
 
-let g:syntastic_phpcs_conf = "-psv --standard=WordPress --extensions=php"
+" :help syntastic-checker-options for more info
+let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_php_phpcs_args = "--report=csv -psv --standard=WordPress --extensions=php"
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['sass', 'scss'] }
 let g:syntastic_enable_signs=1
 " let g:syntastic_stl_format = '[%E{%e Errors}%B{, }%W{%w Warnings}]'
@@ -755,7 +765,7 @@ let g:syntastic_loc_list_height=2
 " Surround TODO {{{
 
 " Cut current function TODO
-nmap vix ?^function<CR>Vf{%x
+nmap vix ?function<CR>Vf{%x<leader><space>
 " Surround inner ( with spaces
 nmap vv f(vi(S<Space><Space>
 " Surround current word with paranthesis
@@ -823,7 +833,6 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " NERD Tree {{{
 
 noremap  <F2> :NERDTreeToggle<cr>
-noremap  <leader>nt :NERDTreeToggle<cr>
 inoremap <F2> <esc>:NERDTreeToggle<cr>
 
 augroup ps_nerdtree
@@ -834,10 +843,11 @@ augroup ps_nerdtree
 augroup END
 
 let NERDTreeHighlightCursorline = 1
-let NERDTreeIgnore = ['\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index',
-                    \ 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json',
-                    \ '.*\.o$', 'db.db', 'tags.bak']
-
+let NERDTreeIgnore = ['\~$', '.git$[[dir]]', '.DS_Store', '.*\.pyc$',
+                    \ 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid',
+                    \ 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db',
+                    \ 'tags.bak']
+let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDChristmasTree = 1
@@ -913,7 +923,7 @@ nmap <F10> :SaveSession<cr>
 " }}}
 " Gist {{{
 
-cnoreabbrev g Gist
+cnoreabbrev gst Gist
 cnoreabbrev gist Gist -p
 cnoreabbrev gistl Gist -l
 let g:gist_clip_command = 'pbcopy'
@@ -922,6 +932,54 @@ let g:gist_open_browser_after_post = 0
 let g:gist_show_privates = 1
 " Update Gist only with :w!
 let g:gist_update_on_write = 2
+
+" }}}
+" Ack {{{
+
+nnoremap <leader>a :Ack!<space>
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Ack motions {{{
+
+" Motions to Ack for things.  Works with pretty much everything, including:
+"
+"   w, W, e, E, b, B, t*, f*, i*, a*, and custom text objects
+"
+" For example: \aiw will Ack for the word under the cursor. \aib will Ack for the contents of the parentheses the cursor is inside.
+"
+" Note: If the text covered by a motion contains a newline it won't work.  Ack
+" searches line-by-line.
+
+nnoremap <silent> <localleader>a :set opfunc=<SID>AckMotion<CR>g@
+xnoremap <silent> <localleader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
+
+nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
+xnoremap <silent> <bs> :<C-U>call <SID>AckMotion(visualmode())<CR>
+
+function! s:CopyMotionForType(type)
+    if a:type ==# 'v'
+        silent execute "normal! `<" . a:type . "`>y"
+    elseif a:type ==# 'char'
+        silent execute "normal! `[v`]y"
+    endif
+endfunction
+
+function! s:AckMotion(type) abort
+    let reg_save = @@
+
+    call s:CopyMotionForType(a:type)
+
+    execute "normal! :Ack! --literal " . shellescape(@@) . "\<cr>"
+
+    let @@ = reg_save
+endfunction
+
+" }}}
+
+" }}}
+" ZoomWin {{{
+
+nmap <localleader>z :ZoomWin<cr>
 
 " }}}
 
@@ -1082,43 +1140,6 @@ endfunction " }}}
 
 nmap <silent> <f3> :ErrorsToggle<cr>
 nmap <silent> <f4> :QFixToggle<cr>
-
-" }}}
-" Ack motions {{{
-" TODO
-
-" Motions to Ack for things.  Works with pretty much everything, including:
-"
-"   w, W, e, E, b, B, t*, f*, i*, a*, and custom text objects
-"
-" Awesome.
-"
-" Note: If the text covered by a motion contains a newline it won't work.  Ack
-" searches line-by-line.
-
-nnoremap <silent> <leader>A :set opfunc=<SID>AckMotion<CR>g@
-xnoremap <silent> <leader>A :<C-U>call <SID>AckMotion(visualmode())<CR>
-
-nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
-xnoremap <silent> <bs> :<C-U>call <SID>AckMotion(visualmode())<CR>
-
-function! s:CopyMotionForType(type)
-    if a:type ==# 'v'
-        silent execute "normal! `<" . a:type . "`>y"
-    elseif a:type ==# 'char'
-        silent execute "normal! `[v`]y"
-    endif
-endfunction
-
-function! s:AckMotion(type) abort
-    let reg_save = @@
-
-    call s:CopyMotionForType(a:type)
-
-    execute "normal! :Ack! --literal " . shellescape(@@) . "\<cr>"
-
-    let @@ = reg_save
-endfunction
 
 " }}}
 " Indent Guides {{{
