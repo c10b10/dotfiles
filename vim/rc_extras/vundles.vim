@@ -79,11 +79,6 @@ Bundle 'edsono/vim-matchit'
 Bundle 'Valloric/MatchTagAlways'
 
 " }}}
-" Greplace: `grep` Search and replace {{{
-
-Bundle 'skwp/greplace.vim'
-
-" }}}
 " Taglist: A source code browser used by ctags {{{
 
 Bundle 'vim-scripts/taglist.vim'
@@ -163,6 +158,13 @@ Bundle 'ZoomWin'
 
 " }}}
 
+" === Pending
+
+" Greplace: `grep` Search and replace {{{
+
+Bundle 'skwp/greplace.vim'
+
+" }}}
 
 " === Inactive
 
