@@ -3,7 +3,7 @@
 
 " SnipMate {{{
 
-Bundle 'SirVer/ultisnips'
+" Bundle 'SirVer/ultisnips'
 
 " }}}
 " YouCompleteMe: Autocomplete {{{
@@ -103,6 +103,7 @@ Bundle 'c10b10/gist-vim'
 " }}}
 " Vim-Session: Session management {{{
 
+Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 
 " }}}
@@ -134,8 +135,8 @@ Bundle 'sjl/vitality.vim'
 " }}}
 " CoffeeScript & Coco {{{
 
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'satyr/vim-coco'
+" Bundle 'kchmck/vim-coffee-script'
+" Bundle 'satyr/vim-coco'
 
 " }}}
 " Commenting {{{
@@ -167,7 +168,7 @@ Bundle 'mileszs/ack.vim'
 " }}}
 " ZoomWin {{{
 
-Bundle 'ZoomWin'
+" Bundle 'ZoomWin'
 
 " }}}
 " GitGutter {{{
@@ -176,25 +177,31 @@ Bundle 'ZoomWin'
 
 " }}}
 " Dash {{{
+
+if has('gui_running')
     Bundle 'rizzatti/funcoo.vim'
     Bundle 'rizzatti/dash.vim'
+endif
+
 " }}}
 " JSHint {{{
+
     Bundle 'wookiehangover/jshint.vim'
+
 " }}}
 " Slime {{{
+
 Bundle 'jpalardy/vim-slime'
-" }}}
-
-" === Pending
-
-" Greplace: `grep` Search and replace {{{
-
-Bundle 'skwp/greplace.vim'
 
 " }}}
 
 " === Inactive
+
+" Greplace: `grep` Search and replace {{{
+
+" Bundle 'skwp/greplace.vim'
+
+" }}}
 
 " Twitter {{{
 

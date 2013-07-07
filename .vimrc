@@ -1,4 +1,4 @@
-".vimrc
+
 " Author: Alex Ciobica <alex.ciobica@gmail.com>
 " Inspiration form: Steve Losh, Jeffrey Way, Derek Wyatt
 
@@ -60,7 +60,7 @@ set spellfile+=~/.vim/custom-dictionary.utf-8.add
 set autowrite
 set autoread
 set mousehide "Hide mouse when typing
-set shell=zsh\ -i
+set shell=zsh
 
 set sessionoptions=resize,winpos,winsize,buffers,tabpages,folds,curdir,help "Session settings
 

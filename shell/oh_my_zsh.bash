@@ -1,12 +1,5 @@
 #!/bin/bash
 
-# === z-zsh https://github.com/sjl/z-zsh
-
-source_if_exists $HOME/bin/z-zsh/z.sh
-function precmd () {
-	z --add "$(pwd -P)"
-}
-
 # === Oh My Zsh
 
 # Path to your oh-my-zsh configuration.

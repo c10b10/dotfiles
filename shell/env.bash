@@ -29,3 +29,11 @@ autoload bashcompinit
 bashcompinit
 source_if_exists $HOME/.composer/vendor/wp-cli/wp-cli/utils/wp-completion.bash
 
+# === z-zsh https://github.com/sjl/z-zsh
+
+if [ -f $HOME/bin/z-zsh/z.sh ]; then
+    . $HOME/bin/z-zsh/z.sh
+    function precmd () {
+        z --add "$(pwd -P)"
+    }
+fi
