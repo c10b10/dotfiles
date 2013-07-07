@@ -1,5 +1,6 @@
 -R
---languages=php
+--languages=php,python
+--python-kinds=-i
 --exclude=.svn
 --tag-relative=yes
 --regex-PHP=/abstract\s+class\s+([^ ]+)/\1/c/

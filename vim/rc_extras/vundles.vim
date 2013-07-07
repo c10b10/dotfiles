@@ -1,6 +1,17 @@
 " `zR` to open all folds ಠ‿ಠ
 " `zM` to close all folds ಠ_ಠ
 
+" SnipMate {{{
+
+Bundle 'SirVer/ultisnips'
+
+" }}}
+" YouCompleteMe: Autocomplete {{{
+
+" Need to run ./install.sh to get this running after update
+Bundle 'Valloric/YouCompleteMe'
+
+" }}}
 " NERDTree {{{
 "
 Bundle 'scrooloose/nerdtree'
@@ -16,9 +27,15 @@ Bundle 'sjl/badwolf'
 Bundle 'vim-scripts/PDV--phpDocumentor-for-Vim'
 
 " }}}
-" Powerline status bar {{{
+" Fancy status bar {{{
 
-Bundle 'Lokaltog/vim-powerline'
+" Bundle 'Lokaltog/vim-powerline'
+" Backup of Poweline config
+" let g:Powerline_symbols = 'fancy'
+" call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+" let g:Powerline_colorscheme = 'badwolf'
+
+Bundle 'bling/vim-airline'
 
 " }}}
 "
@@ -53,11 +70,6 @@ Bundle 'sjl/gundo.vim'
 Bundle 'duff/vim-scratch'
 
 " }}}
-" YouCompleteMe: Autocomplete {{{
-
-Bundle 'Valloric/YouCompleteMe'
-
-" }}}
 " Vim-Repeat: Extends the . repeat command {{{
 "
 Bundle 'tpope/vim-repeat'
@@ -87,7 +99,7 @@ Bundle 'vim-scripts/taglist.vim'
 " Gist plugin {{{
 " Requirement
 Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
+Bundle 'c10b10/gist-vim'
 " }}}
 " Vim-Session: Session management {{{
 
@@ -109,7 +121,8 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-markdown'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'vim-scripts/Trac-Wikimarkup'
-Bundle 'ingydotnet/yaml-vim'
+" Bundle 'saltstack/salt-vim'
+" Bundle 'ingydotnet/yaml-vim'
 Bundle 'nono/jquery.vim'
 Bundle 'tpope/vim-haml'
 
@@ -138,8 +151,8 @@ Bundle 'vim-scripts/IndexedSearch'
 " }}}
 " AutoCloses pairs like: [], (), '', "" {{{
 
-" Bundle 'Raimondi/delimitMate'
-Bundle 'kana/vim-smartinput'
+Bundle 'Raimondi/delimitMate'
+" Bundle 'kana/vim-smartinput'
 
 " }}}
 " CtrlP {{{
@@ -156,6 +169,21 @@ Bundle 'mileszs/ack.vim'
 
 Bundle 'ZoomWin'
 
+" }}}
+" GitGutter {{{
+"
+" Bundle 'airblade/vim-gitgutter'
+
+" }}}
+" Dash {{{
+    Bundle 'rizzatti/funcoo.vim'
+    Bundle 'rizzatti/dash.vim'
+" }}}
+" JSHint {{{
+    Bundle 'wookiehangover/jshint.vim'
+" }}}
+" Slime {{{
+Bundle 'jpalardy/vim-slime'
 " }}}
 
 " === Pending

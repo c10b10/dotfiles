@@ -60,6 +60,7 @@ set spellfile+=~/.vim/custom-dictionary.utf-8.add
 set autowrite
 set autoread
 set mousehide "Hide mouse when typing
+set shell=zsh\ -i
 
 set sessionoptions=resize,winpos,winsize,buffers,tabpages,folds,curdir,help "Session settings
 
@@ -115,13 +116,16 @@ augroup END
 " Tabs, spaces, wrapping {{{
 
 set expandtab
-au BufNewFile,BufRead *.php setlocal noexpandtab
+set smarttab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set textwidth=80
 set wrap " as opposed to nowrap
 set formatoptions=qrn1
+au BufNewFile,BufRead *.php setlocal tabstop=4
+au BufNewFile,BufRead *.php setlocal noexpandtab
+au BufNewFile,BufRead *.py setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " }}}
 " Wildmenu (Command line) completion {{{
@@ -183,7 +187,7 @@ set incsearch " Set incremental searching
 set hlsearch " Highlight searching
 set wrapscan " Searches wrap around the end of the file
 set showmatch " Blinks the closing brackets to show match
-set matchtime=3 " Thenths of a sceond to show the matching parent
+set matchtime=2 " Hundreds of milliseconds to show the matching parent
 
 set gdefault " :s/search/replace/g <- global always on
 
@@ -493,13 +497,13 @@ noremap  <F1> :set invfullscreen<CR>
 inoremap <F1> <ESC>:set invfullscreen<CR>a
 
 " Saves time.
-nmap ; :
-vmap ; :
+" nmap ; :
+" vmap ; :
 nmap <leader>b :b<space>
 
 " Open gist with the id under the cursor
-cnoreabbrev gst/ https://gist.github.com/
-nmap ,og viW"gy:!open gst/ <bs><C-r>g<cr>
+cnoreabbrev gsst/ https://gist.github.com/
+nmap ,og viW"gy:!open gsst/ <bs><C-r>g<cr>
 
 " CD to the directory containing the file in the buffer
 nmap <silent> <leader>cd :lcd %:h<CR>
@@ -602,7 +606,7 @@ vnoremap Q gq
 
 " Reformat line.
 " I never use l as a macro register anyway.
-nnoremap ql ^vg_gq
+" nnoremap ql ^vg_gq
 
 " Easier linewise reselection
 nnoremap <leader>V V`]
@@ -703,6 +707,7 @@ call MakeSpacelessIabbrev('p?', '?><?php><Backspace><M-Left><M-Left><CR><ESC>O' 
 call MakeSpacelessIabbrev('htmlc', '<!--  --><Left><Left><Left><Left>' )
 call MakeSpacelessIabbrev('arrr', 'array( '' => x )<M-Left><M-Left><M-Left><M-Left><Right>' )
 call MakeSpacelessIabbrev('secho', 'echo <<<EOL<Right><Right><Right><Backspace><Backspace><Backspace><Return><Return>EOL;<Up>' )
+call MakeSpacelessIabbrev('pyd', 'import pdb; pdb.set_trace()' )
 
 " }}}
 " Quick editing ----------------------------------------------------------- {{{
@@ -754,12 +759,16 @@ endfunction " }}}
 
 " :help syntastic-checker-options for more info
 let g:syntastic_php_checkers=['php', 'phpcs']
-let g:syntastic_php_phpcs_args = "--report=csv -psv --standard=WordPress --extensions=php"
+let g:syntastic_php_phpcs_args = "--report=csv -psv --standard=/usr/lib/php/pear/PHP/CodeSniffer/Standards/WordPress/phpcs.ruleset.xml --extensions=php"
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['sass', 'scss'] }
 let g:syntastic_enable_signs=1
 " let g:syntastic_stl_format = '[%E{%e Errors}%B{, }%W{%w Warnings}]'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=2
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_style_error_symbol = '⚠'
+let g:syntastic_ignore_files=['\.*/wp-includes/', '\.*/wp-admin/']
 
 " }}}
 " Surround TODO {{{
@@ -774,7 +783,19 @@ nmap vi9 viWS(
 " }}}
 " YouCompleteMe {{{
 
-let g:ycm_key_invoke_completion = '<C>'
+let g:ycm_key_invoke_completion = '<Alt-Space>'
+let g:ycm_complete_in_comments_and_strings = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_semantic_triggers =  {
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,d,vim,ruby,python,perl6,scala,vb,elixir,go' : ['.'],
+  \ }
+
+" }}}
+" Snippets {{{ "
+
+let g:UltiSnipsExpandTrigger = '<C-\>'
 
 " }}}
 " Zen Coding {{{
@@ -828,6 +849,10 @@ nmap <f5> :GundoToggle<cr>
 " Fugitive {{{
 
 autocmd BufReadPost fugitive://* set bufhidden=delete
+cnoreabbrev gw Gwrite
+cnoreabbrev gc Gcommit
+cnoreabbrev gcm Gcommit -m ""<Left>
+cnoreabbrev Gst Gstatus
 
 " }}}
 " NERD Tree {{{
@@ -851,7 +876,7 @@ let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDChristmasTree = 1
-let NERDTreeChDirMode = 2
+let NERDTreeChDirMode = 1
 let NERDTreeMapJumpFirstChild = 'gK'
 let NERDTreeBookmarksFile = expand('~/bin/dotfiles/vim/nt/NERDTreeBookmarks')
 let NERDTreeShowLineNumbers=1
@@ -868,11 +893,12 @@ nnoremap <C-P> :call PhpDocSingle()<CR>
 vnoremap <C-P> :call PhpDocRange()<CR>
 
 " }}}
-" Powerline status line {{{
+" Fancy status line {{{
 
-let g:Powerline_symbols = 'fancy'
-call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
-" let g:Powerline_colorscheme = 'badwolf'
+let g:airline_left_sep = '⮀ '
+let g:airline_right_sep = '⮂'
+let g:airline_linecolumn_prefix = '⭡ '
+let g:airline_fugitive_prefix = ' ⭠ '
 
 " }}}
 " ctags {{{
@@ -917,15 +943,15 @@ nnoremap <leader>cfr :CoffeeRun<cr>
 let g:session_directory='~/.vim/sessions'
 let g:session_autoload='yes'
 " let g:session_autosave='yes'
-let g:session_default_to_last=1
+let g:session_default_to_last=0
 nmap <F10> :SaveSession<cr>
 
 " }}}
 " Gist {{{
 
-cnoreabbrev gst Gist
-cnoreabbrev gist Gist -p
-cnoreabbrev gistl Gist -l
+cnoreabbrev gst Gist -p
+cnoreabbrev gstl Gist -l
+cnoreabbrev gstt Gist
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filteyype = 1
 let g:gist_open_browser_after_post = 0
@@ -953,8 +979,8 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 nnoremap <silent> <localleader>a :set opfunc=<SID>AckMotion<CR>g@
 xnoremap <silent> <localleader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
 
-nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
-xnoremap <silent> <bs> :<C-U>call <SID>AckMotion(visualmode())<CR>
+" nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
+" xnoremap <silent> <bs> :<C-U>call <SID>AckMotion(visualmode())<CR>
 
 function! s:CopyMotionForType(type)
     if a:type ==# 'v'
@@ -981,6 +1007,16 @@ endfunction
 
 nmap <localleader>z :ZoomWin<cr>
 
+" }}}
+" GitGutter {{{
+let g:gitgutter_on_bufenter = 0
+" }}}
+" Dash {{{
+nmap <leader>dd :Dash<cr>
+nmap <leader>dg :Dash!<cr>
+" }}}
+" JSHint {{{
+let g:JSHintHighlightErrorLine = 0
 " }}}
 
 " }}}
@@ -1299,7 +1335,196 @@ map <localleader>u :call HandleURI()<CR>
 " Linux {{{
 " nnoremap <localleader>u :silent !xdg-open <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
 " }}}
+" Dash {{{
 
+" Search Dash for word under cursor
+function! SearchDash()
+  let s:browser = "/usr/bin/open"
+  let s:wordUnderCursor = expand("<cword>")
+  let s:url = "dash://".s:wordUnderCursor
+  let s:cmd ="silent ! " . s:browser . " " . s:url
+  execute s:cmd
+  redraw!
+endfunction
+map <leader>x :call SearchDash()<CR>"
+
+" }}}
+" }}}
+" Autoread more often {{{
+" If you are using a console version of Vim, or dealing
+" with a file that changes externally (e.g. a web server log)
+" then Vim does not always check to see if the file has been changed.
+" The GUI version of Vim will check more often (for example on Focus change),
+" and prompt you if you want to reload the file.
+"
+" There can be cases where you can be working away, and Vim does not
+" realize the file has changed. This command will force Vim to check
+" more often.
+"
+" Calling this command sets up autocommands that check to see if the
+" current buffer has been modified outside of vim (using checktime)
+" and, if it has, reload it for you.
+"
+" This check is done whenever any of the following events are triggered:
+" * BufEnter
+" * CursorMoved
+" * CursorMovedI
+" * CursorHold
+" * CursorHoldI
+"
+" In other words, this check occurs whenever you enter a buffer, move the cursor,
+" or just wait without doing anything for 'updatetime' milliseconds.
+"
+" Normally it will ask you if you want to load the file, even if you haven't made
+" any changes in vim. This can get annoying, however, if you frequently need to reload
+" the file, so if you would rather have it to reload the buffer *without*
+" prompting you, add a bang (!) after the command (WatchForChanges!).
+" This will set the autoread option for that buffer in addition to setting up the
+" autocommands.
+"
+" If you want to turn *off* watching for the buffer, just call the command again while
+" in the same buffer. Each time you call the command it will toggle between on and off.
+"
+" WatchForChanges sets autocommands that are triggered while in *any* buffer.
+" If you want vim to only check for changes to that buffer while editing the buffer
+" that is being watched, use WatchForChangesWhileInThisBuffer instead.
+"
+command! -bang WatchForChanges                  :call WatchForChanges(@%,  {'toggle': 1, 'autoread': <bang>0})
+command! -bang WatchForChangesWhileInThisBuffer :call WatchForChanges(@%,  {'toggle': 1, 'autoread': <bang>0, 'while_in_this_buffer_only': 1})
+command! -bang WatchForChangesAllFile           :call WatchForChanges('*', {'toggle': 1, 'autoread': <bang>0})
+
+" WatchForChanges function
+"
+" This is used by the WatchForChanges* commands, but it can also be
+" useful to call this from scripts. For example, if your script executes a
+" long-running process, you can have your script run that long-running process
+" in the background so that you can continue editing other files, redirects its
+" output to a file, and open the file in another buffer that keeps reloading itself
+" as more output from the long-running command becomes available.
+"
+" Arguments:
+" * bufname: The name of the buffer/file to watch for changes.
+"     Use '*' to watch all files.
+" * options (optional): A Dict object with any of the following keys:
+"   * autoread: If set to 1, causes autoread option to be turned on for the buffer in
+"     addition to setting up the autocommands.
+"   * toggle: If set to 1, causes this behavior to toggle between on and off.
+"     Mostly useful for mappings and commands. In scripts, you probably want to
+"     explicitly enable or disable it.
+"   * disable: If set to 1, turns off this behavior (removes the autocommand group).
+"   * while_in_this_buffer_only: If set to 0 (default), the events will be triggered no matter which
+"     buffer you are editing. (Only the specified buffer will be checked for changes,
+"     though, still.) If set to 1, the events will only be triggered while
+"     editing the specified buffer.
+"   * more_events: If set to 1 (the default), creates autocommands for the events
+"     listed above. Set to 0 to not create autocommands for CursorMoved, CursorMovedI,
+"     (Presumably, having too much going on for those events could slow things down,
+"     since they are triggered so frequently...)
+function! WatchForChanges(bufname, ...)
+  " Figure out which options are in effect
+  if a:bufname == '*'
+    let id = 'WatchForChanges'.'AnyBuffer'
+    " If you try to do checktime *, you'll get E93: More than one match for * is given
+    let bufspec = ''
+  else
+    if bufnr(a:bufname) == -1
+      echoerr "Buffer " . a:bufname . " doesn't exist"
+      return
+    end
+    let id = 'WatchForChanges'.bufnr(a:bufname)
+    let bufspec = a:bufname
+  end
+
+  if len(a:000) == 0
+    let options = {}
+  else
+    if type(a:1) == type({})
+      let options = a:1
+    else
+      echoerr "Argument must be a Dict"
+    end
+  end
+  let autoread    = has_key(options, 'autoread')    ? options['autoread']    : 0
+  let toggle      = has_key(options, 'toggle')      ? options['toggle']      : 0
+  let disable     = has_key(options, 'disable')     ? options['disable']     : 0
+  let more_events = has_key(options, 'more_events') ? options['more_events'] : 1
+  let while_in_this_buffer_only = has_key(options, 'while_in_this_buffer_only') ? options['while_in_this_buffer_only'] : 0
+
+  if while_in_this_buffer_only
+    let event_bufspec = a:bufname
+  else
+    let event_bufspec = '*'
+  end
+
+  let reg_saved = @"
+  "let autoread_saved = &autoread
+  let msg = "\n"
+
+  " Check to see if the autocommand already exists
+  redir @"
+    silent! exec 'au '.id
+  redir END
+  let l:defined = (@" !~ 'E216: No such group or event:')
+
+  " If not yet defined...
+  if !l:defined
+    if l:autoread
+      let msg = msg . 'Autoread enabled - '
+      if a:bufname == '*'
+        set autoread
+      else
+        setlocal autoread
+      end
+    end
+    silent! exec 'augroup '.id
+      if a:bufname != '*'
+        "exec "au BufDelete    ".a:bufname . " :silent! au! ".id . " | silent! augroup! ".id
+        "exec "au BufDelete    ".a:bufname . " :echomsg 'Removing autocommands for ".id."' | au! ".id . " | augroup! ".id
+        exec "au BufDelete    ".a:bufname . " execute 'au! ".id."' | execute 'augroup! ".id."'"
+      end
+        exec "au BufEnter     ".event_bufspec . " :checktime ".bufspec
+        exec "au CursorHold   ".event_bufspec . " :checktime ".bufspec
+        exec "au CursorHoldI  ".event_bufspec . " :checktime ".bufspec
+
+      " The following events might slow things down so we provide a way to disable them...
+      " vim docs warn:
+      "   Careful: Don't do anything that the user does
+      "   not expect or that is slow.
+      if more_events
+        exec "au CursorMoved  ".event_bufspec . " :checktime ".bufspec
+        exec "au CursorMovedI ".event_bufspec . " :checktime ".bufspec
+      end
+    augroup END
+    let msg = msg . 'Now watching ' . bufspec . ' for external updates...'
+  end
+
+  " If they want to disable it, or it is defined and they want to toggle it,
+  if l:disable || (l:toggle && l:defined)
+    if l:autoread
+      let msg = msg . 'Autoread disabled - '
+      if a:bufname == '*'
+        set noautoread
+      else
+        setlocal noautoread
+      end
+    end
+    " Using an autogroup allows us to remove it easily with the following
+    " command. If we do not use an autogroup, we cannot remove this
+    " single :checktime command
+    " augroup! checkforupdates
+    silent! exec 'au! '.id
+    silent! exec 'augroup! '.id
+    let msg = msg . 'No longer watching ' . bufspec . ' for external updates.'
+  elseif l:defined
+    let msg = msg . 'Already watching ' . bufspec . ' for external updates'
+  end
+
+  echo msg
+  let @"=reg_saved
+endfunction
+
+let autoreadargs={'autoread':1}
+execute WatchForChanges("*",autoreadargs)
 " }}}
 
 " }}}
@@ -1310,7 +1535,8 @@ if has('gui_running')
 
 	set linespace=3 "Prefer a slightly higher line height
 
-	set guifont=Monaco:h13    " set fonts for gui vim
+	" set guifont=Inconsolata-dz\ for\ Powerline:h13 " set fonts for gui vim
+	set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13 " set fonts for gui vim
 	colorscheme badwolf
 
     " Remove all the UI cruft
