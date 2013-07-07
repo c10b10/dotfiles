@@ -474,7 +474,9 @@ augroup END
 " Includes --------------------------------------------------------------- {{{
 
 " Include my super secret stuff
-source ~/.vim/rc_extras/secret.vim
+if filereadable("~/.vim/rc_extras/secret.vim")
+    source ~/.vim/rc_extras/secret.vim
+endif
 
 " }}}
 " Convenience mappings ---------------------------------------------------- {{{
