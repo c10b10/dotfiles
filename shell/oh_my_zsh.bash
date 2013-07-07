@@ -2,7 +2,7 @@
 
 # === z-zsh https://github.com/sjl/z-zsh
 
-. $HOME/bin/z-zsh/z.sh
+source_if_exists $HOME/bin/z-zsh/z.sh
 function precmd () {
 	z --add "$(pwd -P)"
 }

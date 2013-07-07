@@ -21,7 +21,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/Applications/MAMP/Library/bin:/usr/local/bin:$PATH"
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
+source_if_exists /usr/local/bin/virtualenvwrapper.sh
 export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules"
 
 # Activate bash completion for WP-CLI
