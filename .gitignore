@@ -1,1 +1,5 @@
 ssh/*
+vim/bundle/*
+!vim/bundle/README.md
+vim/sessions/*
+vim/tmp
