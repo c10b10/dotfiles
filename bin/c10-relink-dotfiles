@@ -10,14 +10,14 @@ echo "Linking the config files..."
 
 ln -fs $C10_DOTFILES/ackrc $HOME/.ackrc
 ln -fs $C10_DOTFILES/agignore $HOME/.agignore
-ln -fs $C10_DOTFILES/ctags .ctags
-ln -fs $C10_DOTFILES/vimrc .vimrc
-ln -fs $C10_DOTFILES/zshrc .zshrc
-ln -fs $C10_DOTFILES/vimrc .vimrc
-ln -fs $C10_DOTFILES/vim .vim
-ln -fs $C10_DOTFILES/gitconfig .gitconfig
-ln -fs $C10_DOTFILES/gitignore .gitignore
-ln -fs $C10_DOTFILES/oh-my-zsh .oh-my-zsh
+ln -fs $C10_DOTFILES/ctags $HOME/.ctags
+ln -fs $C10_DOTFILES/vimrc $HOME/.vimrc
+ln -fs $C10_DOTFILES/zshrc $HOME/.zshrc
+ln -fs $C10_DOTFILES/vimrc $HOME/.vimrc
+ln -fs $C10_DOTFILES/vim/ $HOME/.vim
+ln -fs $C10_DOTFILES/gitconfig $HOME/.gitconfig
+ln -fs $C10_DOTFILES/gitignore $HOME/.gitignore
+ln -fs $C10_DOTFILES/oh-my-zsh $HOME/.oh-my-zsh
 
 sudo ln -fs $C10_DOTFILES/mysql/my.cnf /etc/my.cnf
 
