@@ -474,6 +474,7 @@ augroup END
 " Includes --------------------------------------------------------------- {{{
 
 " Include my super secret stuff
+    source ~/.vim/rc_extras/secret.vim
 if filereadable("~/.vim/rc_extras/secret.vim")
     source ~/.vim/rc_extras/secret.vim
 endif
@@ -618,7 +619,7 @@ nnoremap J mzJ`z
 
 " Split line (sister to [J]oin lines)
 " The normal use of S is covered by cc, so don't worry about shadowing it.
-nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+" nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 
 " HTML tag closing
 inoremap <C-_> <Space><BS><Esc>:call InsertCloseTag()<cr>a
@@ -733,11 +734,15 @@ nnoremap <leader>es :tabedit ~/.vim/rc_extras/secret.vim<cr>
 
 " Bubble single lines. Alt-k & Alt-j symbols. Requires Tim Pope's unimpaired
 nmap ∆ ]e
+nmap <M-j> ]e
 nmap ˚ [e<esc>
+nmap <M-k> [e<esc>
 
 " Bubble multiple lines
 vmap ˚ [egv
+nmap <M-j> [egv
 vmap ∆ ]egv
+nmap <M-k> ]egv
 
 " }}}
 
@@ -835,7 +840,8 @@ let g:ctrlp_prompt_mappings = {
 \ 'ToggleFocus()':        ['<c-tab>'],
 \ }
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$|\w+_pull_\w+$',
+  \ 'file':  '\v\.(sql|jpg|png)$',
   \ }
 let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*|tags|*.vim|.DS_Store' " MacOSX/Linux
 " let g:ctrlp_dotfiles = 0
@@ -1535,7 +1541,7 @@ execute WatchForChanges("*",autoreadargs)
 if has('gui_running')
     " GUI Vim
 
-	set linespace=3 "Prefer a slightly higher line height
+	set linespace=2 "Prefer a slightly higher line height
 
 	" set guifont=Inconsolata-dz\ for\ Powerline:h13 " set fonts for gui vim
 	set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13 " set fonts for gui vim

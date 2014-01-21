@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+ln -fs $C10_DOTFILES/ackrc $HOME/.ackrc
+ln -fs $C10_DOTFILES/agignore $HOME/.agignore
+ln -fs $C10_DOTFILES/ctags .ctags
+ln -fs $C10_DOTFILES/vimrc .vimrc
+ln -fs $C10_DOTFILES/zshrc .zshrc
+ln -fs $C10_DOTFILES/vimrc .vimrc
+ln -fs $C10_DOTFILES/vim .vim
+ln -fs $C10_DOTFILES/gitconfig .gitconfig
+ln -fs $C10_DOTFILES/gitignore .gitignore
+
+sudo ln -fs $C10_DOTFILES/mysql/my.cnf /etc/my.cnf
+
+echo "Done!"

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+count=${1-1}
+
+repeat_cmd() {
+    n=$1
+    shift
+    while [ $(( n -= 1 )) -ge 0 ]
+    do
+        "$@"
+    done
+}
+
+# Adds a space to the dock.
+repeat_cmd $count defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+killall Dock
+echo "= Added $count space(s) to the Dock."

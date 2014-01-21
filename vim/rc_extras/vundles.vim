@@ -46,7 +46,7 @@ Bundle 'tpope/vim-surround'
 " }}}
 " Zen Coding {{{
 "
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 
 " }}}
 " Git management on steroids {{{
@@ -171,11 +171,6 @@ Bundle 'mileszs/ack.vim'
 " Bundle 'ZoomWin'
 
 " }}}
-" GitGutter {{{
-"
-" Bundle 'airblade/vim-gitgutter'
-
-" }}}
 " Dash {{{
 
 if has('gui_running')
@@ -192,6 +187,11 @@ endif
 " Slime {{{
 
 Bundle 'jpalardy/vim-slime'
+
+" }}}
+" Signify {{{
+
+Bundle 'mhinz/vim-signify'
 
 " }}}
 

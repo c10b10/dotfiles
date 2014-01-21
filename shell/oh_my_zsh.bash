@@ -16,6 +16,7 @@ ZSH_THEME="c10"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+DISABLE_CORRECTION="true"
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
