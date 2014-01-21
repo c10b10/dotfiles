@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 echo -e "=Trying to setup the shell.\n"
 
@@ -21,7 +22,7 @@ $C10_DOTFILES/bin/c10-relink-dotfiles
 # Create the c10 config file
 echo "Creating the $HOME/.c10 file..."
 rm -f $HOME/.c10
-echo "export C10_DOTFILES=$C10_DOTFILES" >.c10
+echo "export C10_DOTFILES=$C10_DOTFILES" > $HOME/.c10
 echo Done!
 
 echo -e "\nChanging shell to zsh..."
