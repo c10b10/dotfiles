@@ -7,8 +7,8 @@ if [[ -z $C10_DOTFILES ]] || [[ ! -d $C10_DOTFILES ]]; then
     echo -e "If that file exists, make sure the path is correct.\n"
     return
 fi
-
-export C10_SCRIPTS=$C10_DOTFILES/bin
+# sanitize to remove the trailing slash
+export C10_DOTFILES=${C10_DOTFILES%/}
 
 # Load the environment. Source:
 # - the global functions and variables
