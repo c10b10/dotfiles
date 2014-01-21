@@ -1,5 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Lists the active wp plugins using wp-cli
-
 wp plugin list | grep -w active | cut -f 1 | tr '\n' ' ' | sed 's/ $//'

@@ -18,7 +18,7 @@ C10_ENV=""
 # Also, don't include these paths if the tools aren't installed.
 
 # ==Local scrips
-export PATH="/usr/local/bin:$C10_SCRIPTS:$PATH"
+export PATH="/usr/local/bin:$C10_DOTFILES/bin:$PATH"
 
 # ==RVM
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm

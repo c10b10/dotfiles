@@ -1,8 +1,22 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
+
+read -p "Are you sure you want uninstall mysql? [y/n] " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    echo "Cancelled."
+    exit 0
+fi
+
+echo "1/5"
 brew remove mysql
+echo "2/5"
 brew cleanup
+echo "3/5"
 launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+echo "4/5"
 rm -f ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+echo "5/5"
 sudo rm -rf /usr/local/var/mysql

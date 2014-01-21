@@ -20,7 +20,6 @@ set -e
 # Default options are read from the following files in the given order:
 # /etc/my.cnf /etc/mysql/my.cnf /usr/local/etc/my.cnf ~/.my.cnf
 echo $C10_DOTFILES
-echo $C10_SCRIPTS
 sudo ln -s $C10_DOTFILES/mysql/my.cnf /etc/my.cnf
 
 # = TIPS

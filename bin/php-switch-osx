@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 # Switch the php version
 
 # Where am I? Take me home now!
