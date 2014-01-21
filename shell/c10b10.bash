@@ -13,8 +13,8 @@ alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 # ==Expand links to their full location
 cdh() { cd $1; cd `pwd -P`; }
 
-alias editalias="vim $DOTFILES/shell/c10b10.bash && reload"
-alias mvim="$DOTFILES/vim/mvim"
+alias editalias="vim $C10_DOTFILES/shell/c10b10.bash && reload"
+alias mvim="$C10_DOTFILES/vim/mvim"
 
 alias cdproj="cd ~/Projects"
 alias cdw3="cd ~/Projects/w3"

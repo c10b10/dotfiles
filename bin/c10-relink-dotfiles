@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+if [[ ! -d $C10_DOTFILES ]]; then
+	echo "c10-relink-dotfiles: Directory \"$C10_DOTFILES\" does not exist."
+	exit 1
+fi
+
+echo "Linking the config files..."
+
 ln -fs $C10_DOTFILES/ackrc $HOME/.ackrc
 ln -fs $C10_DOTFILES/agignore $HOME/.agignore
 ln -fs $C10_DOTFILES/ctags .ctags
@@ -10,6 +17,7 @@ ln -fs $C10_DOTFILES/vimrc .vimrc
 ln -fs $C10_DOTFILES/vim .vim
 ln -fs $C10_DOTFILES/gitconfig .gitconfig
 ln -fs $C10_DOTFILES/gitignore .gitignore
+ln -fs $C10_DOTFILES/oh-my-zsh .oh-my-zsh
 
 sudo ln -fs $C10_DOTFILES/mysql/my.cnf /etc/my.cnf
 

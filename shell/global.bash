@@ -11,6 +11,8 @@ source_if_exists() {
 
 # =Environment variables
 
+C10_ENV=""
+
 # TODO
 # echo $PATH reveals that there are duplicates in the PATH. WHY?
 # Also, don't include these paths if the tools aren't installed.
@@ -20,7 +22,7 @@ export PATH="/usr/local/bin:$C10_SCRIPTS:$PATH"
 
 # ==RVM
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-PATH=$PATH:$HOME/.rvm/bin
+export PATH=$PATH:$HOME/.rvm/bin
 
 # ==Heroku
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -41,18 +43,21 @@ source_if_exists /usr/local/bin/virtualenvwrapper.sh
 
 # =z-zsh https://github.com/sjl/z-zsh
 
-if [ -f $1 ]; then
-    . $DOTFILES/z-zsh/z.sh
+if [ -f $C10_DOTFILES/z-zsh/z.sh ]; then
+    . $C10_DOTFILES/z-zsh/z.sh
     function precmd () {
         z --add "$(pwd -P)"
     }
+    C10_ENV="$C10_ENV,z-zsh:true"
+else
+	C10_ENV="$C10_ENV,z-zsh:false"
 fi
 
 # ==wp-cli
 
 export WP_CLI_PHP=/Applications/MAMP/bin/php/php5.4.4/bin/php
 
-# Activate bash completion for WP-CLI
+# ===Activate bash completion for WP-CLI
 autoload bashcompinit
 bashcompinit
 source_if_exists $HOME/.composer/vendor/wp-cli/wp-cli/utils/wp-completion.bash
