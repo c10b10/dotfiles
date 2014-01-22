@@ -19,15 +19,18 @@ if [ $value == "php53" ]; then
 	brew unlink php53 > /dev/null 2>&1
 	brew link php54 > /dev/null 2>&1
 	sudo ln -sf `brew list php54 | grep libphp` /usr/local/lib/libphp5.so
-	echo "Switched to 5.4."
+    ln -sf $C10_DOTFILES/php/php54.ini $C10_DOTFILES/php/php.ini
+	echo "Switched to PHP 5.4."
 
 # if php54 is on, switch to php53
 elif [ $value == "php54" ]; then
 	brew unlink php54 > /dev/null 2>&1
 	brew link php53 > /dev/null 2>&1
 	sudo ln -sf `brew list php53 | grep libphp` /usr/local/lib/libphp5.so
-	echo "Switched to 5.3."
+    ln -sf $C10_DOTFILES/php/php53.ini $C10_DOTFILES/php/php.ini
+	echo "Switched to PHP 5.3."
 fi
+
 
 # Refresh the current version file
 php -r "$script" > current_php_version
@@ -36,7 +39,7 @@ php -r "$script" > current_php_version
 cd - > /dev/null 2>&1
 rm -rf ~/php_version_switch
 
-echo "Restarting Apache."
+echo -e "Restarting Apache..."
 # Kill all apache processes so the new libphp.so file is loaded correctly
 sudo pkill -9 httpd
 
