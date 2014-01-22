@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo /private/etc/apache2/extra/httpd-vhosts.conf

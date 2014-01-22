@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-sudo vim /private/etc/apache2/extra/httpd-vhosts.conf
