@@ -64,5 +64,7 @@ source_if_exists $HOME/.composer/vendor/wp-cli/wp-cli/utils/wp-completion.bash
 
 # ==node & nvm
 
-source ~/.nvm/nvm.sh
-export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules"
+if [ -f $HOME/.nvm/nvm.sh ]; then
+    . $HOME/.nvm/nvm.sh
+    export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules"
+fi
