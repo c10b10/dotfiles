@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 read -p "Are you sure you want uninstall mysql? [y/n] " -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]
@@ -10,13 +8,29 @@ then
     exit 0
 fi
 
-echo "1/5"
-brew remove mysql
-echo "2/5"
-brew cleanup
-echo "3/5"
-launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-echo "4/5"
-rm -f ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-echo "5/5"
-sudo rm -rf /usr/local/var/mysql
+
+uninstall_mysql() {
+    local launch_file="$HOME/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
+    local steps=6
+
+    echo "1/$steps: Removing mysql from homebrew..."
+    brew remove mysql
+    echo "2/$steps: Cleaning up homebrew..."
+    brew cleanup
+    echo "3/$steps: Trying to remove $launch_file from auto launch."
+    if [[ -f $launch_file ]]; then
+        launchctl unload -w $launch_file
+    else
+        echo "File missing, skipping this step."
+    fi
+    echo "4/$steps: Delete the auto launch file if it exists..."
+    rm -f $launch_file
+    echo "5/$steps: Remove the /usr/local/var/mysql dir..."
+    sudo rm -rf /usr/local/var/mysql
+    echo "6/$steps: Remove the /etc/my.cnf file..."
+    sudo rm -f /etc/my.cnf
+}
+
+uninstall_mysql
+
+echo "All done!"
