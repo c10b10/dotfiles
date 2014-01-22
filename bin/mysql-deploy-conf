@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+echo -e "Linking $C10_DOTFILES/mysql/my.cnf to /etc/my.cnf..."
+sudo ln -fs $C10_DOTFILES/mysql/my.cnf /etc/my.cnf
+
+if [[ -z $1 ]]; then
+    echo -e "Restarting mysql..."
+    pkill -f mysql
+    mysql.server start
+fi
+
+echo -e "Done!"

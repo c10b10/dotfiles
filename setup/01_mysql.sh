@@ -43,8 +43,8 @@ secure_mysql() {
 link_config() {
     # Default options are read from the following files in the given order:
     # /etc/my.cnf /etc/mysql/my.cnf /usr/local/etc/my.cnf ~/.my.cnf
-    echo_color "4. Linking $C10_DOTFILES/mysql/my.cnf to /etc/my.cnf..."
-    sudo ln -fs $C10_DOTFILES/mysql/my.cnf /etc/my.cnf
+    echo_color "4. Setting up the mysql config..."
+    mysql-deploy-conf 'false'
     echo_color "4. Done!"
 }
 
