@@ -13,6 +13,8 @@ uninstall_mysql() {
     local launch_file="$HOME/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
     local steps=6
 
+    echo "0/$steps: Killing all mysql processes..."
+    pkill -f mysql
     echo "1/$steps: Removing mysql from homebrew..."
     brew remove mysql
     echo "2/$steps: Cleaning up homebrew..."

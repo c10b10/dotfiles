@@ -65,6 +65,7 @@ add_user() {
     echo_color "5. Done!"
 }
 
+pkill -f mysql
 set -e
 setup_brew
 install_mysql
