@@ -1,6 +1,7 @@
 ssh/*
 
 php/php.ini
+apache/httpd-vhosts.conf
 
 vim/bundle/*
 !vim/bundle/vundle
