@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 set -e
 
 echo_color()
@@ -18,9 +19,9 @@ setup_php_brew() {
 }
 
 install_php() {
-    echo -e "Installing php..."
-    brew install php53 --with-mysql --with-debug
-    brew install php54 --with-mysql --with-debug
+    echo -e "Installing phps..."
+    brew install php53 --with-mysql --with-imap --with-debug
+    brew install php54 --with-mysql --with-imap --with-debug
     echo -e "Done!\n"
 }
 
@@ -28,9 +29,10 @@ echo_color "Starting the php installation process..."; echo
 
 setup_php_brew
 install_php
-php-switch-osx
+php-switch-osx 'php53' > /dev/null
 
-echo -e "\nYou can switch php versions using 'php-switch-osx'."
+echo -e "\nYou are now using php53."
+echo -e "\nYou can switch php versions using 'php-switch-osx [php5x]'."
 
 echo; echo_color 'All done!'
 
