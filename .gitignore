@@ -1,5 +1,7 @@
 ssh/*
 
+php/php.ini
+
 vim/bundle/*
 !vim/bundle/vundle
 
