@@ -1,5 +1,7 @@
 ssh/*
 
+*.log
+
 php/php.ini
 apache/httpd-vhosts.conf
 
