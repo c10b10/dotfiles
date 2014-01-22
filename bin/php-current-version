@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Switch the php version
+
+current_php_version() {
+    # Find the current php version
+    script="if ( strpos(phpversion(), '5.3') !== false ) { echo 'php53'; } else { echo 'php54'; }"
+
+    # Get the version into a var
+    echo `php -r "$script"`
+}
+
+current_php_version
