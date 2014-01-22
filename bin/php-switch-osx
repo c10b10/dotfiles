@@ -1,49 +1,53 @@
 #!/usr/bin/env bash
 
-# Switch the php version
+switch_to() {
+    local DESIRED=$1
+    local CURR=$(php-current-version)
+    if [[ $CURRENT == $DESIRED ]]; then
+        echo "Bumblehead, you're aleady using $DESIRED."
+        exit 0
+        return
+    fi
 
-# Where am I? Take me home now!
-mkdir ~/php_version_switch && cd ~/php_version_switch > /dev/null 2>&1
+    brew unlink $CURR > /dev/null 2>&1
+    brew link $DESIRED > /dev/null 2>&1
+    sudo ln -sf `brew list $DESIRED | grep libphp` /usr/local/lib/libphp5.so
+    ln -sf $C10_DOTFILES/php/$DESIRED.ini $C10_DOTFILES/php/php.ini
+    echo "Switched to $DESIRED."
+}
 
-# Find the current php version
-script="if ( strpos(phpversion(), '5.3') !== false ) { echo 'php53'; } else { echo 'php54'; }"
+# returns the next php version after the current if no valid argument is
+# supplied, and the supplied version otherwise
+sanitize() {
+    IFS=' ' read -ra ALL <<< "$(php-installed)"
+    local TO=${1-''}
 
-# Check the current version (useful if this script is run for the first time)
-php -r "$script" > current_php_version
+    # exit if valid version is supplied
+    if [[ ! -z $TO ]]; then
+        for i in ${ALL[@]}; do
+            if [[ $i == $TO ]]; then
+                echo $TO && return
+            fi
+        done
+    fi
 
-# Get the version into a var
-value="$(<current_php_version)"
+    # return the next version after the current, if no valid
+    # argument is supplied
+    local CURR=$(php-current-version)
+    local VER=false
+    for i in "${!ALL[@]}"; do
+        [[ $VER -eq 1 ]] && echo ${ALL[$i]} && return
+        if [[ ${ALL[$i]} == $CURR ]]; then
+            VER=1
+        fi
+    done
 
-# Change the php version using brew, from php53 to php54
-if [ $value == "php53" ]; then
-	brew unlink php53 > /dev/null 2>&1
-	brew link php54 > /dev/null 2>&1
-	sudo ln -sf `brew list php54 | grep libphp` /usr/local/lib/libphp5.so
-    ln -sf $C10_DOTFILES/php/php54.ini $C10_DOTFILES/php/php.ini
-	echo "Switched to PHP 5.4."
+    # the next version must be the first in the list
+    echo ${ALL[0]}
+}
 
-# if php54 is on, switch to php53
-elif [ $value == "php54" ]; then
-	brew unlink php54 > /dev/null 2>&1
-	brew link php53 > /dev/null 2>&1
-	sudo ln -sf `brew list php53 | grep libphp` /usr/local/lib/libphp5.so
-    ln -sf $C10_DOTFILES/php/php53.ini $C10_DOTFILES/php/php.ini
-	echo "Switched to PHP 5.3."
-fi
-
-
-# Refresh the current version file
-php -r "$script" > current_php_version
-
-# Back, we're done !
-cd - > /dev/null 2>&1
-rm -rf ~/php_version_switch
-
-echo -e "Restarting Apache..."
-# Kill all apache processes so the new libphp.so file is loaded correctly
+switch_to $(sanitize ${1-''})
 sudo pkill -9 httpd
-
-# Restart apache
 sudo apachectl -k restart > /dev/null 2>&1
 
 echo "Done!"
