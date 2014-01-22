@@ -18,7 +18,7 @@ echo_color()
     echo -e "\033[${foreground}m\033[${background}m$1\033[0m";
 }
 
-setup_brew() {
+setup_mysql_brew() {
     echo_color "1. Updating homebrew and its formulas..."
     brew update
     brew upgrade
@@ -68,7 +68,7 @@ add_user() {
 
 pkill -f mysql
 set -e
-setup_brew
+setup_mysql_brew
 install_mysql
 mysql.server start
 secure_mysql
