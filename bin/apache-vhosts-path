@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo /private/etc/apache2/extra/httpd-vhosts.conf
+echo $C10_DOTFILES/apache/httpd-vhosts.conf
