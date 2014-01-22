@@ -33,7 +33,7 @@ if [ -d "/Applications/MAMP/" ]; then
 fi
 
 # ==Local super scripts
-export PATH="/usr/local/sbin/:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
 # ==Python
 
