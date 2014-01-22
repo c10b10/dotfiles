@@ -49,7 +49,8 @@ link_config() {
 }
 
 add_user() {
-    echo_color -e "5. Adding permission to the current user.\nCurrently, you can only log in to mysql using the root user (i.e. mysql -uroot -p), unless you allowed anonymous login, in which case you should answer no to the next question.\n"
+    echo_color "5. Adding permission to the current user."
+    echo -e "Currently, you can only log in to mysql using the root user (i.e. mysql -uroot -p), unless you allowed anonymous login, in which case you should answer no to the next question.\n"
 
     read -p "Do you want to add access for user `whoami` (you will be allowed to login by typing 'mysql' and login without any password)? [y/n] " -n 1 -r
     echo
