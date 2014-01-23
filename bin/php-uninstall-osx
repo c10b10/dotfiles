@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-read -p "Are you sure you want uninstall mysql? [y/n] " -n 1 -r
+read -p "Are you sure you want uninstall php and all its extensions? [y/n] " -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
@@ -8,30 +8,54 @@ then
     exit 0
 fi
 
-
 uninstall_php() {
-    # local launch_file="$HOME/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
-    local steps=6
+    local PHP=$1
 
-    IFS=' ' read -ra VER <<< "$(php-installed)"
-    for i in "${VER[@]}"; do
-        brew remove $i
-        /usr/local/etc/php/5.3/conf.d
-    done
-
-    echo "1/$steps: Removing mysql from homebrew..."
-    brew remove mysql
-
-    echo "2/$steps: Cleaning up homebrew..."
-    brew cleanup
-
-    echo "5/$steps: Remove the /usr/local/var/mysql dir..."
-    sudo rm -rf /usr/local/var/mysql
-
-    echo "6/$steps: Remove the /etc/my.cnf file..."
-    sudo rm -f /etc/my.cnf
+    echo -e "\nRemoving PHP $(php-current-version 'pretty')..."
+    # brew remove $PHP
 }
 
-uninstall_mysql
+uninstall_extensions() {
+    local PHP=$1
+
+    local PHP_VERSION=$(php-current-version 'pretty')
+    echo -e "\nRemoving extensions for PHP $PHP_VERSION..."
+
+    local EXTENSIONS=$(brew list | grep "^$PHP-")
+
+    IFS=' ' read -ra PLUGINS <<< ${EXTENSIONS//$'\n'/' '}
+    local i; for i in "${PLUGINS[@]}"; do
+
+        # remove extension
+        # brew remove $i
+
+        # a lil' cleanup
+        local PLUGIN=`echo $i | cut -d - -f 2-`
+        echo "/usr/local/etc/php/$PHP_VERSION/conf.d/ext-${PLUGIN}.ini"
+
+    done
+}
+
+sanitize() {
+    local PHP=${1-''}
+
+    # exit if valid version is supplied
+    if [[ ! -z $PHP ]]; then
+        for i in ${ALL[@]}; do
+            if [[ $i == $PHP ]]; then
+                echo $PHP && return
+            fi
+        done
+    fi
+
+    echo $(php-installed)
+}
+
+IFS=' ' read -ra WHAT <<< $(sanitize ${1-''})
+for i in "${WHAT[@]}"; do
+    php-switch-osx $i > /dev/null
+    uninstall_extensions $i
+    uninstall_php $i
+done
 
 echo "All done!"
