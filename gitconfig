@@ -4,6 +4,7 @@
 [core]
     excludesfile = /Users/c10b10/.gitignore
     mergeoptions = --no-edit
+    editor = /usr/bin/vim
 [alias]
 
     l = log -18 --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset'
@@ -19,7 +20,33 @@
     shelve = stash save --include-untracked
     unshelve = stash pop
 
+    ksdiff = difftool -y -t Kaleidoscope
+    ksshow = "!sh -c 'git ksdiff $1^..$1;' -"
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[difftool]
+	prompt = false
+
+[diff]
+	tool = Kaleidoscope
+
+[merge]
+	tool = Kaleidoscope
+
+[mergetool]
+	prompt = false
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+
+[web]
+    browser = open
+
 [push]
     default = simple
+
 [github]
     user = c10b10
