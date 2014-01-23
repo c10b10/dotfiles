@@ -16,7 +16,6 @@ brew install hub
 brew install tree
 brew install openssl
 brew install wget
-brew install awk
 
 # change permissions to avoid permissions errors on brew update
 sudo chown -R $USER /usr/local
