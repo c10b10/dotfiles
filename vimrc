@@ -865,8 +865,7 @@ cnoreabbrev Gst Gstatus
 " }}}
 " NERD Tree {{{
 
-noremap  <F2> :NERDTreeToggle<cr>
-inoremap <F2> <esc>:NERDTreeToggle<cr>
+noremap  <leader>nt :NERDTreeToggle<cr>
 
 augroup ps_nerdtree
     au!

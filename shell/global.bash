@@ -55,7 +55,7 @@ fi
 
 # ==wp-cli
 
-export WP_CLI_PHP=/Applications/MAMP/bin/php/php5.4.4/bin/php
+export WP_CLI_PHP=/usr/local/Cellar/php54/5.4.24/bin/php
 
 # ===Activate bash completion for WP-CLI
 autoload bashcompinit

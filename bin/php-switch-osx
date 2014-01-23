@@ -13,14 +13,14 @@ switch_to() {
     brew link $DESIRED > /dev/null 2>&1
     sudo ln -sf `brew list $DESIRED | grep libphp` /usr/local/lib/libphp5.so
     ln -sf $C10_DOTFILES/php/$DESIRED.ini $C10_DOTFILES/php/php.ini
-    echo "Switched to $DESIRED."
+    echo "Switched to PHP $(pretty_php_version), mkay?"
 }
 
 # returns the next php version after the current if no valid argument is
 # supplied, and the supplied version otherwise
 sanitize() {
-    IFS=' ' read -ra ALL <<< "$(php-installed)"
     local TO=${1-''}
+    IFS=' ' read -ra ALL <<< "$(php-installed)"
 
     # exit if valid version is supplied
     if [[ ! -z $TO ]]; then
@@ -35,7 +35,7 @@ sanitize() {
     # argument is supplied
     local CURR=$(php-current-version)
     local VER=false
-    for i in "${!ALL[@]}"; do
+    local i; for i in "${!ALL[@]}"; do
         [[ $VER -eq 1 ]] && echo ${ALL[$i]} && return
         if [[ ${ALL[$i]} == $CURR ]]; then
             VER=1
@@ -46,8 +46,10 @@ sanitize() {
     echo ${ALL[0]}
 }
 
+pretty_php_version() {
+    echo $(php --info | grep -m 1 'PHP Version' | cut -d ' ' -f 4 | cut -d . -f 1-2)
+}
+
 switch_to $(sanitize ${1-''})
 sudo pkill -9 httpd
 sudo apachectl -k restart > /dev/null 2>&1
-
-echo "Done!"

@@ -27,7 +27,7 @@ install_ext_for_ver() {
     echo; echo_color "Installing $PHP_VER extensions..."
 
     IFS=',' read -ra EXT <<< "$EXT_LIST"
-    for i in "${EXT[@]}"; do
+    local i; for i in "${EXT[@]}"; do
         echo -e "\nInstalling $i..."
         brew install $PHP_VER-$i
         echo -e "Done!"
@@ -38,7 +38,7 @@ install_ext_for_ver() {
 install_php_ext() {
     local EXT_LIST=$1
     local PHP_CURR=$(php-current-version)
-    IFS=' ' read -ra VER <<< "$(php-installed)"
+    local i; IFS=' ' read -ra VER <<< "$(php-installed)"
     for i in "${VER[@]}"; do
         php-switch-osx $i > /dev/null
         install_ext_for_ver $EXT_LIST $i
