@@ -70,6 +70,9 @@ pkill -f mysql
 set -e
 setup_mysql_brew
 install_mysql
+# Set the permissions on the mysql directory so mysql won't bitch
+# about PID stuff all the time
+chmod /usr/local/var/mysql 2> /dev/null
 mysql.server start
 secure_mysql
 set +e
