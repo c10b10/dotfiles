@@ -2,7 +2,7 @@
 
 link_mysql() {
     local RECOVERY=${1-''}
-    local FILE='my.sql'
+    local FILE='my.cnf'
 
     if [[ ! -z $RECOVERY ]] && [[ $RECOVERY == 'recovery' ]]; then
         FILE='my-recovery.cnf'
