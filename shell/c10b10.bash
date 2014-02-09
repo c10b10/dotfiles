@@ -8,7 +8,6 @@ alias lss="ls -laGh"
 alias svim="mvim -S"
 alias mkctags="ctags -R --languages=php ."
 alias dsw="find . -name '*.sw*' \( ! -name '*.swf' \) -delete"
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 # ==Expand links to their full location
 cdh() { cd $1; cd `pwd -P`; }
