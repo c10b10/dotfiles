@@ -4,7 +4,6 @@ set -e
 deploy_nginx_conf() {
     local src=$1/nginx
     local dest=$(nginx-conf-path)
-    sudo rm -f $dest
     sudo cp -i $src/nginx.conf $(dirname $dest)
     sudo cp -ri $src/global $(dirname $dest)
     echo -e "Deployed config to $(dirname $dest)."
