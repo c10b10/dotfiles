@@ -4,6 +4,8 @@
 
 # =General-
 
+alias cd..="cd ../.."
+alias cd...="cd ../../.."
 alias lss="ls -laGh"
 alias svim="mvim -S"
 alias mkctags="ctags -R --languages=php ."
@@ -20,6 +22,17 @@ alias cdw3="cd ~/Projects/w3"
 
 
 # =Tools
+
+# ==Server
+
+alias nginx.start='sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
+alias nginx.stop='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
+alias nginx.restart='nginx.stop && nginx.start'
+alias php-fpm.start="launchctl load -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist"
+alias php-fpm.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist"
+alias php-fpm.restart='php-fpm.stop && php-fpm.start'
+alias nginx.logs.error='tail -250f /usr/local/etc/nginx/logs/error.log'
+alias nginx.logs.access='tail -250f /usr/local/etc/nginx/logs/access.log'
 
 # ==WordPress General
 alias cdp="pushd wp-content/plugins"
