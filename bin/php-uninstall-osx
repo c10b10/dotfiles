@@ -12,7 +12,9 @@ uninstall_php() {
     local PHP=$1
 
     echo -e "\nRemoving PHP $(php-current-version 'pretty')..."
-    # brew remove $PHP
+    brew unlink $PHP
+    brew remove $PHP
+    rm -f ~/Library/LaunchAgents/homebrew-php.josegonzalez.${PHP}.plist
 }
 
 uninstall_extensions() {
@@ -27,11 +29,11 @@ uninstall_extensions() {
     local i; for i in "${PLUGINS[@]}"; do
 
         # remove extension
-        # brew remove $i
+        brew remove $i
 
         # a lil' cleanup
         local PLUGIN=`echo $i | cut -d - -f 2-`
-        echo "/usr/local/etc/php/$PHP_VERSION/conf.d/ext-${PLUGIN}.ini"
+        rm -f /usr/local/etc/php/$PHP_VERSION/conf.d/ext-${PLUGIN}.ini
 
     done
 }
