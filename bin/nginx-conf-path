@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# You could just run brew info nginx and see if the path is listed there
+echo "/usr/local/etc/nginx/nginx.conf"
