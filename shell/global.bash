@@ -56,6 +56,7 @@ fi
 # ==wp-cli
 
 export WP_CLI_PHP=/usr/local/Cellar/php54/5.4.24/bin/php
+export WP_CLI_PHP_ARGS="-c $C10_DOTFILES/php/php54.ini"
 
 # ===Activate bash completion for WP-CLI
 autoload bashcompinit
