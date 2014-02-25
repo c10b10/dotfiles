@@ -34,7 +34,7 @@ setup_php_brew() {
 install_php() {
     local PHP=$1
     echo -e "Installing PHP $(pretty_php_version $PHP)..."
-    echo "brew install $PHP --with-mysql --with-imap --with-debug"
+    brew install $PHP --with-mysql --without-apache --with-imap --with-fpm --with-debug
     echo -e "Done!\n"
 }
 
