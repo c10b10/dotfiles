@@ -7,7 +7,7 @@
 # https://github.com/josegonzalez/homebrew-php/tree/master/Formula
 
 set -e
-PHP_EXTENSIONS='xdebug mcrypt'
+PHP_EXTENSIONS='xdebug memcached apc mcrypt'
 PHP_VERSIONS=$(php-installed)
 
 echo_color()
@@ -44,11 +44,11 @@ install_ext_for_ver() {
 # installs all php extensions for each php environment installed
 install_php_ext() {
     local EXT_LIST=$1
-    local PHP_VERSIONS=$2
-    local i; IFS=' ' read -ra VER <<< "$PHP_VERSIONS"
+    local PHP_VER=$2
+    local i; IFS=' ' read -ra VER <<< "$PHP_VER"
     for i in "${VER[@]}"; do
         php-switch-osx $i > /dev/null
-        install_ext_for_ver $EXT_LIST $i
+        install_ext_for_ver "$EXT_LIST" "$i"
     done
 }
 
@@ -65,11 +65,11 @@ sanitize_php() {
         done
     fi
 
-    echo $PHP_VERSION
+    echo $PHP_VERSIONS
 }
 
 echo_color "Starting the php extensions installation process...";
-install_php_ext $PHP_EXTENSIONS $(sanitize_php $1)
+install_php_ext "$PHP_EXTENSIONS" "$(sanitize_php $1)"
 
 echo; echo_color 'All done!'
 
