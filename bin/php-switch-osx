@@ -14,9 +14,6 @@ switch_to() {
         return
     fi
 
-    echo $DESIRED
-    echo $CURR
-
     brew unlink $CURR > /dev/null 2>&1
     if [[ $SERVER == 'nginx' ]]; then
         sudo launchctl unload -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist
