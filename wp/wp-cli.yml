@@ -1,0 +1,3 @@
+path: "wp"
+require: "bin/deploy/deploy.php"
+url: "site.local"
