@@ -13,14 +13,15 @@ backup_initial_config() {
 # copy the config file
 
 bakup_initial_config
-deploy_apache_conf
+apache-deploy-conf
 
 
-echo -e "Setting up your deful vhosts file at $C10_DOTFILES/apache/httpd-vhosts.conf..."
+echo -e "Setting up your default vhosts file at $C10_DOTFILES/apache/httpd-vhosts.conf..."
 set +e
-cp -n httpd-vhosts-template.conf httpd-vhosts.conf
+cp -i httpd-vhosts-template.conf httpd-vhosts.conf
 
 echo 'You should edit the config file (vim $C10_DOTFILES/apache/httpd.conf) by searching for "#c10" and then redeploy (deploy_apache_conf)'
+echo 'Also, if you want to use apache and not nginx as your default server, you should change the 8081 to 80.'
 
 echo -e "\nAll done!"
 
