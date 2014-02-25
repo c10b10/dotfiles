@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+#FIX THE PHPINI VERSION
+
+SERVER=${2-'nginx'}
+
 switch_to() {
     local DESIRED=$1
+    local SERVER=$2
     local CURR=$(php-current-version)
     if [[ $CURRENT == $DESIRED ]]; then
         echo "Bumblehead, you're aleady using $DESIRED."
@@ -9,10 +14,22 @@ switch_to() {
         return
     fi
 
+    echo $DESIRED
+    echo $CURR
+
     brew unlink $CURR > /dev/null 2>&1
+    if [[ $SERVER == 'nginx' ]]; then
+        sudo launchctl unload -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist
+        sudo rm -f ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist
+    fi
+
     brew link $DESIRED > /dev/null 2>&1
     sudo ln -sf `brew list $DESIRED | grep libphp` /usr/local/lib/libphp5.so
-    ln -sf $C10_DOTFILES/php/$DESIRED.ini $C10_DOTFILES/php/php.ini
+    if [[ $SERVER == 'nginx' ]]; then
+        sudo ln -sf /usr/local/opt/$DESIRED/homebrew-php.josegonzalez.${DESIRED}.plist ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist
+        sudo launchctl load -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist
+    fi
+
     echo "Switched to PHP $(pretty_php_version), mkay?"
 }
 
@@ -50,6 +67,17 @@ pretty_php_version() {
     echo $(php --info | grep -m 1 'PHP Version' | cut -d ' ' -f 4 | cut -d . -f 1-2)
 }
 
-switch_to $(sanitize ${1-''})
-sudo pkill -9 httpd
-sudo apachectl -k restart > /dev/null 2>&1
+restart_server() {
+    local SERVER=${1-''}
+    if [[ $SERVER == 'nginx' ]]; then
+        sudo nginx -s reload
+        echo "Reloaded nginx config."
+    else
+        sudo pkill -9 httpd
+        sudo apachectl -k restart > /dev/null 2>&1
+        echo "Restarted apache."
+    fi
+}
+
+switch_to $(sanitize ${1-''}) $SERVER
+restart_server $SERVER
