@@ -25,11 +25,11 @@ alias cdw3="cd ~/Projects/w3"
 
 # ==Server
 
-alias nginx.start='sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
-alias nginx.stop='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
+alias nginx.start='sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist && echo "nginx started."'
+alias nginx.stop='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist && echo "nginx stopped."'
 alias nginx.restart='nginx.stop && nginx.start'
-alias php-fpm.start="sudo launchctl load -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist"
-alias php-fpm.stop="sudo launchctl unload -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist"
+alias php-fpm.start='sudo launchctl load -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist && echo "php-fpm started"'
+alias php-fpm.stop='sudo launchctl unload -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist && echo "php-fpm stopped."'
 alias php-fpm.restart='php-fpm.stop && php-fpm.start'
 alias nginx.logs.error='tail -250f /usr/local/etc/nginx/logs/error.log'
 alias nginx.logs.access='tail -250f /usr/local/etc/nginx/logs/access.log'
