@@ -1,6 +1,7 @@
 ssh/*
 
 *.log
+*.plist
 
 php/php.ini
 apache/httpd-vhosts.conf

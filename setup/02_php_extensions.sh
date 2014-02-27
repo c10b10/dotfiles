@@ -7,7 +7,7 @@
 # https://github.com/josegonzalez/homebrew-php/tree/master/Formula
 
 set -e
-PHP_EXTENSIONS='xdebug memcached apc mcrypt'
+PHP_EXTENSIONS='xdebug memcache memcached apc mcrypt'
 PHP_VERSIONS=$(php-installed)
 
 echo_color()

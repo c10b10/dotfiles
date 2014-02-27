@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-#FIX THE PHPINI VERSION
-
 SERVER=${2-'nginx'}
 
 switch_to() {
@@ -14,17 +12,21 @@ switch_to() {
         return
     fi
 
+    # Unload the running php-fpm
     if [[ $SERVER == 'nginx' ]]; then
-        sudo launchctl unload -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist
-        sudo rm -f ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist
+        IFS=' ' read -ra ALL <<< "$(php-installed)"
+        local i; for i in "${!ALL[@]}"; do
+            sudo launchctl unload -w /usr/local/opt/${ALL[$i]}/homebrew-php.josegonzalez.${ALL[$i]}.plist > /dev/null 2>&1
+        done
     fi
     brew unlink $CURR > /dev/null 2>&1
 
     brew link $DESIRED > /dev/null 2>&1
     sudo ln -sf `brew list $DESIRED | grep libphp` /usr/local/lib/libphp5.so
     if [[ $SERVER == 'nginx' ]]; then
-        sudo ln -sf /usr/local/opt/$DESIRED/homebrew-php.josegonzalez.${DESIRED}.plist ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist
-        sudo launchctl load -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist
+        sudo rm -f $C10_DOTFILES/php/homebrew-php.josegonzalez.plist
+        sudo ln -sf /usr/local/opt/$DESIRED/homebrew-php.josegonzalez.${DESIRED}.plist $C10_DOTFILES/php/homebrew-php.josegonzalez.plist
+        sudo launchctl load -w $C10_DOTFILES/php/homebrew-php.josegonzalez.plist
     fi
 
     echo "Switched to PHP $(pretty_php_version), mkay?"
