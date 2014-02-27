@@ -14,11 +14,11 @@ switch_to() {
         return
     fi
 
-    brew unlink $CURR > /dev/null 2>&1
     if [[ $SERVER == 'nginx' ]]; then
         sudo launchctl unload -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist
         sudo rm -f ~/Library/LaunchAgents/homebrew-php.josegonzalez.plist
     fi
+    brew unlink $CURR > /dev/null 2>&1
 
     brew link $DESIRED > /dev/null 2>&1
     sudo ln -sf `brew list $DESIRED | grep libphp` /usr/local/lib/libphp5.so
