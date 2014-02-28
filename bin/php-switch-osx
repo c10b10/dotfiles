@@ -22,7 +22,6 @@ switch_to() {
     brew unlink $CURR > /dev/null 2>&1
 
     brew link $DESIRED > /dev/null 2>&1
-    sudo ln -sf `brew list $DESIRED | grep libphp` /usr/local/lib/libphp5.so
     if [[ $SERVER == 'nginx' ]]; then
         sudo rm -f $C10_DOTFILES/php/homebrew-php.josegonzalez.plist
         sudo ln -sf /usr/local/opt/$DESIRED/homebrew-php.josegonzalez.${DESIRED}.plist $C10_DOTFILES/php/homebrew-php.josegonzalez.plist
