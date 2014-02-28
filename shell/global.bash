@@ -63,9 +63,13 @@ autoload bashcompinit
 bashcompinit
 source_if_exists $HOME/.composer/vendor/wp-cli/wp-cli/utils/wp-completion.bash
 
-# ==node & nvm
+# ==node
 
-if [ -f $HOME/.nvm/nvm.sh ]; then
-    . $HOME/.nvm/nvm.sh
-    export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules"
+if [[ $(brew list | grep node) == 'node' ]]; then
+    # Localize Node/NPM
+    NPM_PACKAGES="$HOME/.npm-packages"
+    PATH="$NPM_PACKAGES/bin:$PATH"
+    unset MANPATH
+    MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+    NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 fi
