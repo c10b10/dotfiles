@@ -72,9 +72,9 @@ function core() {
     echo_color "=To finish setup you must:" no 3
     echo_color "\t* Update wp-config.php with your db info." no 3
     if [[ $DIR != 'wp' ]]; then
-        echo_color "\t* update config.php and wp-cli to change \"wp\" to \"$1\"." no 3
+        echo_color "\t* update config.php and wp-cli.yml to change \"wp\" to \"$1\"." no 3
     fi
-    echo_color "\t* Clone the deploy tool (git@github.com:c10b10/wp-deploy-flow.git) in" no 3
+    echo_color "\t* Clone the deploy tool (git@github.com:c10b10/wp-cli-deploy.git) in" no 3
     echo_color "\t  \"bin/deploy\" or remove the \"require\" field in wp-cli.yml. " no 3
     echo_color "\t* Update the \"url\" field in wp-cli.yml." no 3
     echo_color "\t* Turn everything into a git repo?" no
@@ -90,7 +90,7 @@ function core() {
 read -e -p "The WordPress version (e.g \"3.5.2\" or \"3.8\"). Press return for the latest: " VERSION
 VERSION=${VERSION:-''}
 
-read -e -p "The name of the wordpress (Press return for \"wp\"): " DIR
+read -e -p "The name of the WordPress directory (Press return for \"wp\"): " DIR
 DIR=${DIR:-wp}
 
 read -e -p "The name of the wp-content directory (Press return for \"content\"): " CONTENT
