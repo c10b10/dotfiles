@@ -135,7 +135,7 @@ Bundle 'sjl/vitality.vim'
 " }}}
 " CoffeeScript & Coco {{{
 
-" Bundle 'kchmck/vim-coffee-script'
+Bundle 'kchmck/vim-coffee-script'
 " Bundle 'satyr/vim-coco'
 
 " }}}
@@ -181,17 +181,40 @@ endif
 " }}}
 " JSHint {{{
 
-    Bundle 'wookiehangover/jshint.vim'
+    " Bundle 'wookiehangover/jshint.vim'
 
 " }}}
 " Slime {{{
 
-Bundle 'jpalardy/vim-slime'
+" Bundle 'jpalardy/vim-slime'
 
 " }}}
 " Signify {{{
 
 Bundle 'mhinz/vim-signify'
+
+" }}}
+" PHPComplete {{{
+
+" Autocompleter
+" Bundle 'shawncplus/phpcomplete.vim'
+" Syntax highliter
+Bundle 'StanAngeloff/php.vim'
+
+" }}}
+
+
+" OpenBrowser {{{
+Bundle 'tyru/open-browser.vim'
+" }}}
+
+" == Scala
+
+" Scala {{{
+
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'ktvoelker/sbt-vim'
 
 " }}}
 

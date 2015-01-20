@@ -24,7 +24,7 @@ pretty_php_version() {
 
 setup_php_brew() {
     echo -e "Tapping kegs and updating brew..."
-    brew tap josegonzalez/php
+    brew tap Homebrew/homebrew-php
     brew tap homebrew/dupes
     brew update
     brew tap --repair
@@ -56,7 +56,7 @@ sanitize() {
 }
 
 echo_color "Starting the php installation process..."; echo
-# setup_php_brew
+setup_php_brew
 
 IFS=' ' read -ra WHAT <<< $(sanitize ${1-''})
 for i in "${WHAT[@]}"; do

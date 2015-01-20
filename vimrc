@@ -887,7 +887,7 @@ let NERDTreeChDirMode = 1
 let NERDTreeMapJumpFirstChild = 'gK'
 let NERDTreeBookmarksFile = expand('~/bin/dotfiles/vim/nt/NERDTreeBookmarks')
 let NERDTreeShowLineNumbers=1
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
 let g:NERDTreeWinSize = 40
 
 " }}}
@@ -969,7 +969,7 @@ let g:gist_update_on_write = 2
 " }}}
 " Ack {{{
 
-nnoremap <leader>a :Ack!<space>
+nnoremap <leader>a :Ack! -G php<space>
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Ack motions {{{
@@ -1021,6 +1021,15 @@ let g:gitgutter_on_bufenter = 0
 " Dash {{{
 nmap <leader>dd :Dash<cr>
 nmap <leader>dg :Dash!<cr>
+" https://github.com/rizzatti/dash.vim/issues/12
+if has('autocmd')
+  augroup Dash
+    autocmd!
+    autocmd FileType php :DashKeywords wp php
+    autocmd FileType javascript :DashKeywords js _ jq bb
+  augroup END
+endif
+
 " }}}
 " JSHint {{{
 let g:JSHintHighlightErrorLine = 0

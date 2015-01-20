@@ -5,6 +5,8 @@
     excludesfile = /Users/c10b10/.gitignore
     mergeoptions = --no-edit
     editor = /usr/bin/vim
+[branch]
+    autosetuprebase = always
 [alias]
 
     sr = submodule update --init --recursive

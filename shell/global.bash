@@ -55,7 +55,7 @@ fi
 
 # ==wp-cli
 
-export WP_CLI_PHP=/usr/local/Cellar/php54/5.4.24/bin/php
+export WP_CLI_PHP=/usr/local/Cellar/php54/5.4.28/bin/php
 # export WP_CLI_PHP_ARGS="-c $C10_DOTFILES/php/php54.ini"
 
 # ===Activate bash completion for WP-CLI
@@ -73,3 +73,5 @@ if [[ $(brew list | grep node) == 'node' ]]; then
     MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
     NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 fi
+
+export TESSDATA_PREFIX="/usr/local/Cellar/tesseract/3.02.02/share"

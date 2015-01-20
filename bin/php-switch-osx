@@ -16,16 +16,17 @@ switch_to() {
     if [[ $SERVER == 'nginx' ]]; then
         IFS=' ' read -ra ALL <<< "$(php-installed)"
         local i; for i in "${!ALL[@]}"; do
-            sudo launchctl unload -w /usr/local/opt/${ALL[$i]}/homebrew-php.josegonzalez.${ALL[$i]}.plist > /dev/null 2>&1
+            sudo launchctl unload -w /usr/local/opt/${ALL[$i]}/homebrew.mxcl.${ALL[$i]}.plist > /dev/null 2>&1
         done
     fi
     brew unlink $CURR > /dev/null 2>&1
 
     brew link $DESIRED > /dev/null 2>&1
     if [[ $SERVER == 'nginx' ]]; then
-        sudo rm -f $C10_DOTFILES/php/homebrew-php.josegonzalez.plist
-        sudo ln -sf /usr/local/opt/$DESIRED/homebrew-php.josegonzalez.${DESIRED}.plist $C10_DOTFILES/php/homebrew-php.josegonzalez.plist
-        sudo launchctl load -w $C10_DOTFILES/php/homebrew-php.josegonzalez.plist
+        sudo rm -f $C10_DOTFILES/php/homebrew.mxcl.php.plist
+        sudo ln -sf /usr/local/opt/$DESIRED/homebrew.mxcl.${DESIRED}.plist $C10_DOTFILES/php/homebrew.mxcl.php.plist
+        sudo chown root $C10_DOTFILES/php/homebrew.mxcl.php.plist
+        sudo launchctl load -w $C10_DOTFILES/php/homebrew.mxcl.php.plist
     fi
 
     echo "Switched to PHP $(pretty_php_version), mkay?"

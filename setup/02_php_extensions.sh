@@ -7,7 +7,7 @@
 # https://github.com/josegonzalez/homebrew-php/tree/master/Formula
 
 set -e
-PHP_EXTENSIONS='xdebug memcache memcached apc mcrypt'
+PHP_EXTENSIONS='xdebug memcache memcached apc mcrypt imagick'
 PHP_VERSIONS=$(php-installed)
 
 echo_color()
@@ -19,7 +19,8 @@ echo_color()
 
 setup_php_brew() {
     echo -e "Tapping kegs and updating brew..."
-    brew tap josegonzalez/php
+    # brew tap josegonzalez/php
+    brew tap homebrew/php
     brew tap homebrew/dupes
     brew update
     brew tap --repair
