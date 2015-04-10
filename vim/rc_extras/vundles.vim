@@ -34,7 +34,6 @@ Plugin 'vim-scripts/PDV--phpDocumentor-for-Vim'
 Plugin 'bling/vim-airline'
 
 " }}}
-"
 " Surround: Manage surrounding {{{
 
 Plugin 'tpope/vim-surround'
@@ -118,21 +117,12 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-markdown'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'vim-scripts/Trac-Wikimarkup'
-" Plugin 'saltstack/salt-vim'
-" Plugin 'ingydotnet/yaml-vim'
-Plugin 'nono/jquery.vim'
 Plugin 'tpope/vim-haml'
 
 " }}}
 " Vitality of iTerm2 {{{
 
 Plugin 'sjl/vitality.vim'
-
-" }}}
-" CoffeeScript & Coco {{{
-
-Plugin 'kchmck/vim-coffee-script'
-" Plugin 'satyr/vim-coco'
 
 " }}}
 " Commenting {{{
@@ -162,11 +152,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 
 " }}}
-" ZoomWin {{{
-
-" Plugin 'ZoomWin'
-
-" }}}
 " Dash {{{
 
 if has('gui_running')
@@ -175,15 +160,10 @@ if has('gui_running')
 endif
 
 " }}}
-" JSHint {{{
-
-    " Plugin 'wookiehangover/jshint.vim'
-
-" }}}
-" Slime {{{
-
-" Plugin 'jpalardy/vim-slime'
-
+" JavaScript {{{
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'crusoexia/vim-javascript-lib'
+    Plugin 'kchmck/vim-coffee-script'
 " }}}
 " Signify {{{
 
@@ -198,43 +178,11 @@ Plugin 'mhinz/vim-signify'
 Plugin 'StanAngeloff/php.vim'
 
 " }}}
-
-
 " OpenBrowser {{{
 Plugin 'tyru/open-browser.vim'
 " }}}
+" ZoomWin {{{
 
-" == Scala
-
-" Scala {{{
-
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'ktvoelker/sbt-vim'
-
-" }}}
-
-" === Inactive
-
-" Greplace: `grep` Search and replace {{{
-
-" Plugin 'skwp/greplace.vim'
-
-" }}}
-
-" Twitter {{{
-
-" Plugin 'vim-scripts/TwitVim'
-
-" }}}
-" LiveReload {{{
-
-" Plugin 'flomotlik/vim-livereload'
-
-" }}}
-" Sudo-GUI: Sudo Save from VIM {{{
-
-	" Replaced by w!!
-	" Plugin 'gmarik/sudo-gui.vim'
+" Plugin 'ZoomWin'
 
 " }}}
