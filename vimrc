@@ -5,27 +5,27 @@
 " `zR` to open all folds ಠ‿ಠ
 " `zM` to close all folds ಠ_ಠ
 
-" Preamble ----------------------------------------------------------- {{{
+" Preamble -----------------------------------------------------------
 
 " Be IMproved
 set nocompatible
 
-" Vundle ----------------------------------------------------------- {{{
+" Vundle -----------------------------------------------------------
 
 filetype off " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 " Let Vundle manage Vundle (required!)
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 source ~/.vim/rc_extras/vundles.vim " Include my bundles
 filetype plugin indent on " required
 
-" }}}
+"
 
-" }}}
-" Basic options ----------------------------------------------------------- {{{
+"
+" Basic options -----------------------------------------------------------
 
-" General {{{
+" General
 "
 set encoding=utf-8
 set fileencoding=utf-8
@@ -78,32 +78,28 @@ au VimResized * :wincmd =
 au BufRead,BufNewFile *.wiki set syntax=wiki
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
-" }}} [/General]
-" Leader {{{
+"  [/General]
+" Leader
 "
 let mapleader = ","
 let maplocalleader = "\\"
 
-" }}}
-" Color scheme {{{
+"
+" Color scheme
 
 syntax on
-set background=dark
-let g:badwolf_tabline = 2
-let g:badwolf_html_link_underline = 0
-colorscheme badwolf
-
-" Reload the colorscheme whenever we write the file.
-augroup color_badwolf_dev
-    au!
-    au BufWritePost badwolf.vim color badwolf
-augroup END
+" let g:badwolf_tabline = 2
+" let g:badwolf_html_link_underline = 0
+colorscheme monokai
+" let g:monokai_thick_border = 1
+let g:monokai_italic = 1
+" colorscheme badwolf
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" }}}
-" Cursorline {{{
+"
+" Cursorline
 
 " Only show cursorline in the current window and in normal mode.
 augroup cline
@@ -112,8 +108,8 @@ augroup cline
     au WinEnter,InsertLeave * set cursorline
 augroup END
 
-" }}} [/Cursorline]
-" Tabs, spaces, wrapping {{{
+"  [/Cursorline]
+" Tabs, spaces, wrapping
 
 set expandtab
 set smarttab
@@ -127,8 +123,8 @@ au BufNewFile,BufRead *.php setlocal tabstop=4
 au BufNewFile,BufRead *.php setlocal noexpandtab
 au BufNewFile,BufRead *.py setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
-" }}}
-" Wildmenu (Command line) completion {{{
+"
+" Wildmenu (Command line) completion
 
 set wildmenu
 set wildmode=list:longest
@@ -139,8 +135,8 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 
-" }}}
-" Line Return {{{
+"
+" Line Return
 
 " Make sure Vim returns to the same line when you reopen a file.
 augroup line_return
@@ -151,8 +147,8 @@ augroup line_return
         \ endif
 augroup END
 
-" }}}
-" Backups {{{
+"
+" Backups
 
 set backup                        " enable backups
 set noswapfile                    " It's 2012, Vim.
@@ -172,10 +168,10 @@ if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
 
-" }}}
 "
-" }}} [/Basic options]
-" Searching and movement -------------------------------------------------- {{{
+"
+"  [/Basic options]
+" Searching and movement --------------------------------------------------
 "
 " Use sane (perl style) regexes.
 nnoremap / /\v
@@ -259,7 +255,7 @@ nnoremap VaB vaBV
 " Toggle "keep current line in the center of the screen" mode
 nnoremap <leader>C :let &scrolloff=999-&scrolloff<cr>
 
-" Directional Keys {{{
+" Directional Keys
 
 " It's 2012.
 noremap j gj
@@ -281,8 +277,8 @@ noremap <silent> <C-F12> :vertical resize +5<CR>
 noremap <silent> ,s8 :vertical resize 83<CR>
 noremap <silent> ,s9 :vertical resize 100<CR>
 
-" }}}
-" Visual Mode */# from Scrooloose {{{
+"
+" Visual Mode */# from Scrooloose
 
 function! s:VSetSearch()
   let temp = @@
@@ -294,20 +290,20 @@ endfunction
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
-" }}}
-" Quickfix / Location navigation {{{
+"
+" Quickfix / Location navigation
 
 nnoremap <left>  :cprev<cr>zvzz
 nnoremap <right> :cnext<cr>zvzz
 nnoremap <up>    :lprev<cr>zvzz
 nnoremap <down>  :lnext<cr>zvzz
 
-" }}}
+"
 
-" }}}
-" Folding ----------------------------------------------------------------- {{{
+"
+" Folding -----------------------------------------------------------------
 
-" Options & Mappings {{{
+" Options & Mappings
 
 set foldenable "Enable code folding
 
@@ -333,7 +329,7 @@ nnoremap zO zCzO
 " I use :sus for the rare times I want to actually background Vim.
 nnoremap <c-z> mzzMzvzz15<c-e>`z:Pulse<cr>
 
-function! MyFoldText() " {{{
+function! MyFoldText() "
     let line = getline(v:foldstart)
 
     let nucolwidth = &fdc + &number * &numberwidth
@@ -347,13 +343,13 @@ function! MyFoldText() " {{{
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
     return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
-endfunction " }}}
+endfunction "
 set foldtext=MyFoldText()
 
-" }}}
-" Filetype-specific {{{
+"
+" Filetype-specific
 
-" .virmc {{{
+" .virmc
 
 augroup vimrc
     au!
@@ -362,8 +358,8 @@ augroup vimrc
 
 augroup END
 
-" }}}
-" CSS and LessCSS {{{
+"
+" CSS and LessCSS
 
 augroup ft_css
     au!
@@ -401,8 +397,8 @@ augroup ft_css
     au BufNewFile,BufRead *.less,*.css inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
 augroup END
 
-" }}}
-" HTML {{{
+"
+" HTML
 
 " Depends on the html5 plugin
 " let g:html_indent_tags = ['p', 'li']
@@ -425,8 +421,8 @@ augroup ft_html
 
 augroup END
 
-" }}}
-" Javascript {{{
+"
+" Javascript
 
 augroup ft_javascript
     au!
@@ -439,8 +435,8 @@ augroup ft_javascript
     au Filetype javascript inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
 augroup END
 
-" }}}
-" Markdown {{{
+"
+" Markdown
 
 augroup ft_markdown
     au!
@@ -455,8 +451,8 @@ augroup ft_markdown
     au Filetype markdown nnoremap <buffer> <localleader>3 mzI###<space><ESC>`z4l
 augroup END
 
-" }}}
-" Vim {{{
+"
+" Vim
 
 augroup ft_vim
     au!
@@ -466,12 +462,12 @@ augroup ft_vim
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 augroup END
 
-" }}}
+"
 
-" }}}
+"
 
-" }}}
-" Includes --------------------------------------------------------------- {{{
+"
+" Includes ---------------------------------------------------------------
 
 " Include my super secret stuff
     source ~/.vim/rc_extras/secret.vim
@@ -479,10 +475,10 @@ if filereadable("~/.vim/rc_extras/secret.vim")
     source ~/.vim/rc_extras/secret.vim
 endif
 
-" }}}
-" Convenience mappings ---------------------------------------------------- {{{
+"
+" Convenience mappings ----------------------------------------------------
 
-" Work stuff {{{
+" Work stuff
 
 nmap <localleader>w3 5ggC4ggC4ggC5gg
 nmap <localleader>vp /wp-content<cr>C/ plugins<cr>C<leader><space>
@@ -493,7 +489,7 @@ nmap <localleader>vt /wp-content<cr>C/themes<cr>C<leader><space>
 let @q='/function viwlwf{hlF)"oy?/\*\*0jf*wv$"py/functionjmagg"opuo"op0diwxvf)S`A | "pp`a'
 let @e='/^functionwvw%"oyma?/\*\*jwwv$h"pyggo"opva(:klklklklklsilent! krkrkrkrkrs/,/`<br\/>`/g0f(i | wds(A | "pp0viwS`f|wvf|eS``a'
 
-" }}}
+"
 
 " Fuck you, help key.
 noremap  <F1> :set invfullscreen<CR>
@@ -660,16 +656,16 @@ nnoremap <leader>i :set list!<cr>
 " Unfuck my screen
 nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
-" Easy filetype switching {{{
+" Easy filetype switching
 
 nnoremap _md :set filetype=markdown<CR> nnoremap _h :set filetype=html<CR>
 nnoremap _p :set filetype=php<CR> nnoremap _js :set filetype=javascript<CR>
 nnoremap _v :set filetype=vim<CR>
 
-" }}}
+"
 
-" }}}
-" Abbreviations ----------------------------------------------------------- {{{
+"
+" Abbreviations -----------------------------------------------------------
 
 function! EatChar(pat)
     let c = nr2char(getchar(0))
@@ -712,20 +708,20 @@ call MakeSpacelessIabbrev('arrr', 'array( '' => x )<M-Left><M-Left><M-Left><M-Le
 call MakeSpacelessIabbrev('secho', 'echo <<<EOL<Right><Right><Right><Backspace><Backspace><Backspace><Return><Return>EOL;<Up>' )
 call MakeSpacelessIabbrev('pyd', 'import pdb; pdb.set_trace()' )
 
-" }}}
-" Quick editing ----------------------------------------------------------- {{{
+"
+" Quick editing -----------------------------------------------------------
 "
 nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>eb :tabedit ~/.vim/rc_extras/vundles.vim<cr>
 nnoremap <leader>eh :tabedit ~/.vim/vim-shortcuts.txt<cr>
 nnoremap <leader>es :tabedit ~/.vim/rc_extras/secret.vim<cr>
 
-" }}}
-" Plugins ------------------------------------------------------------ {{{
+"
+" Plugins ------------------------------------------------------------
 
-" Unimpaired {{{
+" Unimpaired
 
-" Mapping for moving lines {{{
+" Mapping for moving lines
 
 " Method described here: http://vimcasts.org/episodes/bubbling-text/
 " Bubble single lines. Alt-k & Alt-j symbols. Requires Tim Pope's unimpaired
@@ -744,14 +740,14 @@ nmap <M-j> [egv
 vmap ∆ ]egv
 nmap <M-k> ]egv
 
-" }}}
+"
 
-" }}}
-" Scratch {{{
+"
+" Scratch
 
 nnoremap <silent> <leader><tab> :ScratchToggle<cr>
 command! ScratchToggle call ScratchToggle()
-function! ScratchToggle() " {{{
+function! ScratchToggle() "
     if exists("w:is_scratch_window")
         unlet w:is_scratch_window
         exec "q"
@@ -759,10 +755,10 @@ function! ScratchToggle() " {{{
         exec "normal! :Sscratch\<cr>\<C-W>L"
         let w:is_scratch_window = 1
     endif
-endfunction " }}}
+endfunction "
 
-" }}}
-" Syntastic {{{
+"
+" Syntastic
 
 " :help syntastic-checker-options for more info
 let g:syntastic_php_checkers=['php', 'phpcs']
@@ -777,8 +773,8 @@ let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol = '⚠'
 let g:syntastic_ignore_files=['\.*/wp-includes/', '\.*/wp-admin/']
 
-" }}}
-" Surround TODO {{{
+"
+" Surround TODO
 
 " Cut current function TODO
 nmap vix ?function<CR>Vf{%x<leader><space>
@@ -787,8 +783,8 @@ nmap vv f(vi(S<Space><Space>
 " Surround current word with paranthesis
 nmap vi9 viWS(
 
-" }}}
-" YouCompleteMe {{{
+"
+" YouCompleteMe
 
 let g:ycm_key_invoke_completion = '<Alt-Space>'
 let g:ycm_complete_in_comments_and_strings = 1
@@ -799,29 +795,29 @@ let g:ycm_semantic_triggers =  {
   \   'cs,java,javascript,d,vim,ruby,python,perl6,scala,vb,elixir,go' : ['.'],
   \ }
 
-" }}}
-" Snippets {{{ "
+"
+" Snippets  "
 
 let g:UltiSnipsExpandTrigger = '<C-\>'
 
-" }}}
-" Zen Coding {{{
-	"Change zen coding plugin expansion key to shift + e
-	let g:user_zen_expandabbr_key = '<C-e>'
-" }}}
-" Vitality for iTerm2 {{{
+"
+" Emmet
+	" Change zen coding expand key
+    let g:user_emmet_expandabbr_key = '<C-e>'
+"
+" Vitality for iTerm2
 
 let g:vitality_fix_cursor=1
 let g:vitality_fix_focus=1
 let g:vitality_always_assume_iterm=1
 
-" }}}
-" Trailing whitespace {{{
+"
+" Trailing whitespace
 
 nnoremap <leader>ws :FixWhitespace<cr>
 
-" }}}
-" Ctrl-P {{{
+"
+" Ctrl-P
 
 let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:ctrlp_jump_to_buffer = 0
@@ -840,7 +836,7 @@ let g:ctrlp_prompt_mappings = {
 \ 'ToggleFocus()':        ['<c-tab>'],
 \ }
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$|\w+_pull_\w+$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$|node_modules$|\w+_pull_\w+$',
   \ 'file':  '\v\.(sql|jpg|png)$',
   \ }
 let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*|tags|*.vim|.DS_Store' " MacOSX/Linux
@@ -848,13 +844,13 @@ let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*|tags|*.vim|.DS_Store' " MacOSX/Lin
 
 nnoremap <leader>. :CtrlPTag<cr>
 
-" }}}
-" Gundo {{{
+"
+" Gundo
 
 nmap <f5> :GundoToggle<cr>
 
-" }}}
-" Fugitive {{{
+"
+" Fugitive
 
 autocmd BufReadPost fugitive://* set bufhidden=delete
 cnoreabbrev gw Gwrite
@@ -862,8 +858,8 @@ cnoreabbrev gc Gcommit
 cnoreabbrev gcm Gcommit -m ""<Left>
 cnoreabbrev Gst Gstatus
 
-" }}}
-" NERD Tree {{{
+"
+" NERD Tree
 
 noremap  <leader>nt :NERDTreeToggle<cr>
 
@@ -890,8 +886,8 @@ let NERDTreeShowLineNumbers=1
 let g:NERDTreeWinPos = "left"
 let g:NERDTreeWinSize = 40
 
-" }}}
-" PHPDoc {{{
+"
+" PHPDoc
 
 " TODO Tweak!
 
@@ -899,22 +895,29 @@ inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-P> :call PhpDocSingle()<CR>
 vnoremap <C-P> :call PhpDocRange()<CR>
 
-" }}}
-" Fancy status line {{{
+"
+" Fancy status line
 
-let g:airline_left_sep = '⮀ '
-let g:airline_right_sep = '⮂'
-let g:airline_linecolumn_prefix = '⭡ '
-let g:airline_fugitive_prefix = ' ⭠ '
+let g:airline_left_sep = '▙'
+let g:airline_left_alt_sep = '▚'
+let g:airline_right_sep = '▟'
+let g:airline_right_alt_sep = '▞'
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+let g:airline_theme='badwolf'
 
-" }}}
-" ctags {{{
+"
+" ctags
 
 " Generate ctags in current directory
 nmap <leader>tt :!ctags<cr>
 
-" }}}
-" Tag List {{{
+"
+" Tag List
 
 " Set the names of flags
 let tlist_php_settings = 'php;c:class;f:function;d:constant'
@@ -927,8 +930,8 @@ let Tlist_WinWidth = 40
 " Close tlist when a selection is made
 let Tlist_Close_On_Select = 1
 
-" }}}
-" Vim {{{
+"
+" Vim
 
 augroup ft_vim
     au!
@@ -938,23 +941,23 @@ augroup ft_vim
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 augroup END
 
-" }}}
-" CoffeeScript {{{
+"
+" CoffeeScript
 nnoremap <leader>cof :cd ~/Projects/CoffeeScript/<cr>
 nnoremap <leader>cf :CoffeeCompile 10<cr>
 nnoremap <leader>cfm :CoffeeMake<cr>
 nnoremap <leader>cfr :CoffeeRun<cr>
-" }}}
-" Session {{{
+"
+" Session
 
 let g:session_directory='~/.vim/sessions'
 let g:session_autoload='yes'
-" let g:session_autosave='yes'
+let g:session_autosave='yes'
 let g:session_default_to_last=0
 nmap <F10> :SaveSession<cr>
 
-" }}}
-" Gist {{{
+"
+" Gist
 
 cnoreabbrev gst Gist -p
 cnoreabbrev gstl Gist -l
@@ -966,13 +969,13 @@ let g:gist_show_privates = 1
 " Update Gist only with :w!
 let g:gist_update_on_write = 2
 
-" }}}
-" Ack {{{
+"
+" Ack
 
 nnoremap <leader>a :Ack! -G php<space>
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" Ack motions {{{
+" Ack motions
 
 " Motions to Ack for things.  Works with pretty much everything, including:
 "
@@ -1007,18 +1010,18 @@ function! s:AckMotion(type) abort
     let @@ = reg_save
 endfunction
 
-" }}}
+"
 
-" }}}
-" ZoomWin {{{
+"
+" ZoomWin
 
 nmap <localleader>z :ZoomWin<cr>
 
-" }}}
-" GitGutter {{{
+"
+" GitGutter
 let g:gitgutter_on_bufenter = 0
-" }}}
-" Dash {{{
+"
+" Dash
 nmap <leader>dd :Dash<cr>
 nmap <leader>dg :Dash!<cr>
 " https://github.com/rizzatti/dash.vim/issues/12
@@ -1030,23 +1033,23 @@ if has('autocmd')
   augroup END
 endif
 
-" }}}
-" JSHint {{{
+"
+" JSHint
 let g:JSHintHighlightErrorLine = 0
-" }}}
+"
 
-" }}}
-" Text objects ------------------------------------------------------------ {{{
+"
+" Text objects ------------------------------------------------------------
 
-" Shortcut for [] {{{
+" Shortcut for []
 
 onoremap ir i[
 onoremap ar a[
 vnoremap ir i[
 vnoremap ar a[
 
-" }}}
-" Next and Last {{{
+"
+" Next and Last
 "
 " Motion for "next/last object".  "Last" here means "previous", not "final".
 " Unfortunately the "p" motion was already taken for paragraphs.
@@ -1097,8 +1100,8 @@ function! s:NextTextObject(motion, dir)
   exe "normal! ".a:dir.c."v".a:motion.c
 endfunction
 
-" }}}
-" Numbers {{{
+"
+" Numbers
 
 " Motion for numbers.  Great for CSS.  Lets you do things like this:
 "
@@ -1129,14 +1132,14 @@ function! s:NumberTextObject(whole)
     endif
 endfunction
 
-" }}}
+"
 
-" }}}
-" Mini-plugins ------------------------------------------------------------ {{{
+"
+" Mini-plugins ------------------------------------------------------------
 " Stuff that should probably be broken out into plugins, but hasn't proved to be
 " worth the time to do so just yet.
 
-" Synstack {{{
+" Synstack
 
 " Show the stack of syntax hilighting classes affecting whatever is under the
 " cursor.
@@ -1146,8 +1149,8 @@ endfunc
 
 nnoremap <F7> :call SynStack()<CR>
 
-" }}}
-" Diffwhite Toggle {{{
+"
+" Diffwhite Toggle
 
 set diffopt-=iwhite
 let g:diffwhitespaceon = 0
@@ -1164,11 +1167,11 @@ endfunc
 
 nnoremap <leader>dw :call ToggleDiffWhitespace()<CR>
 
-" }}}
-" Error Toggles {{{
+"
+" Error Toggles
 
 command! ErrorsToggle call ErrorsToggle()
-function! ErrorsToggle() " {{{
+function! ErrorsToggle() "
   if exists("w:is_error_window")
     unlet w:is_error_window
     exec "q"
@@ -1177,10 +1180,10 @@ function! ErrorsToggle() " {{{
     lopen
     let w:is_error_window = 1
   endif
-endfunction " }}}
+endfunction "
 
 command! -bang -nargs=? QFixToggle call QFixToggle(<bang>0)
-function! QFixToggle(forced) " {{{
+function! QFixToggle(forced) "
   if exists("g:qfix_win") && a:forced == 0
     cclose
     unlet g:qfix_win
@@ -1188,17 +1191,17 @@ function! QFixToggle(forced) " {{{
     copen 10
     let g:qfix_win = bufnr("$")
   endif
-endfunction " }}}
+endfunction "
 
 nmap <silent> <f3> :ErrorsToggle<cr>
 nmap <silent> <f4> :QFixToggle<cr>
 
-" }}}
-" Indent Guides {{{
+"
+" Indent Guides
 " Toggle Showing Indent guides: <leader>B
 
 let g:indentguides_state = 0
-function! IndentGuides() " {{{
+function! IndentGuides() "
     if g:indentguides_state
         let g:indentguides_state = 0
         2match None
@@ -1206,16 +1209,16 @@ function! IndentGuides() " {{{
         let g:indentguides_state = 1
         execute '2match IndentGuides /\%(\_^\s*\)\@<=\%(\%'.(0*&sw+1).'v\|\%'.(1*&sw+1).'v\|\%'.(2*&sw+1).'v\|\%'.(3*&sw+1).'v\|\%'.(4*&sw+1).'v\|\%'.(5*&sw+1).'v\|\%'.(6*&sw+1).'v\|\%'.(7*&sw+1).'v\)\s/'
     endif
-endfunction " }}}
+endfunction "
 hi def IndentGuides guibg=#303030
 nnoremap <leader>I :call IndentGuides()<cr>
 
-" }}}
-" Block Colors {{{
+"
+" Block Colors
 " Toggle showing of block colors
 
 let g:blockcolor_state = 0
-function! BlockColor() " {{{
+function! BlockColor() "
     if g:blockcolor_state
         let g:blockcolor_state = 0
         call matchdelete(77881)
@@ -1233,22 +1236,22 @@ function! BlockColor() " {{{
         call matchadd("BlockColor5", '^ \{20}.*', 5, 77885)
         call matchadd("BlockColor6", '^ \{24}.*', 6, 77886)
     endif
-endfunction " }}}
-" Default highlights {{{
+endfunction "
+" Default highlights
 hi def BlockColor1 guibg=#222222 ctermbg=234
 hi def BlockColor2 guibg=#2a2a2a ctermbg=235
 hi def BlockColor3 guibg=#353535 ctermbg=236
 hi def BlockColor4 guibg=#3d3d3d ctermbg=237
 hi def BlockColor5 guibg=#444444 ctermbg=238
 hi def BlockColor6 guibg=#4a4a4a ctermbg=239
-" }}}
+"
 nnoremap <leader>B :call BlockColor()<cr>
 
-" }}}
-" Pulse/Blink Line {{{
+"
+" Pulse/Blink Line
 " TODO?
 
-function! s:Pulse() " {{{
+function! s:Pulse() "
     let current_window = winnr()
     windo set nocursorline
     execute current_window . 'wincmd w'
@@ -1278,11 +1281,11 @@ function! s:Pulse() " {{{
     endfor
 
     execute 'hi ' . old_hi
-endfunction " }}}
+endfunction "
 command! -nargs=0 Pulse call s:Pulse()
 
-" }}}
-" Highlight Word {{{
+"
+" Highlight Word
 "
 " This mini-plugin provides a few mappings for highlighting words temporarily.
 "
@@ -1291,7 +1294,7 @@ command! -nargs=0 Pulse call s:Pulse()
 " gives you one color of highlighting.  Now you can use <leader>N where N is
 " a number from 1-6 to highlight the current word in a specific color.
 
-function! HiInterestingWord(n) " {{{
+function! HiInterestingWord(n) "
     " Save our location.
     normal! mz
 
@@ -1312,8 +1315,8 @@ function! HiInterestingWord(n) " {{{
 
     " Move back to our original location.
     normal! `z
-endfunction " }}}
-" Mappings {{{
+endfunction "
+" Mappings
 
 nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
 nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
@@ -1322,8 +1325,8 @@ nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
 nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
 nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
 
-" }}}
-" Default Highlights {{{
+"
+" Default Highlights
 
 hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
 hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
@@ -1332,13 +1335,13 @@ hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
-" }}}
+"
 
-" }}}
-" Open URL in Browser {{{
+"
+" Open URL in Browser
 
 " Works in MAC OS X
-function! HandleURI() "{{{
+function! HandleURI()
   let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;:]*')
   echo s:uri
   if s:uri != ""
@@ -1346,12 +1349,12 @@ function! HandleURI() "{{{
   else
 	  echo "No URI found in line."
   endif
-endfunction " }}}
+endfunction "
 map <localleader>u :call HandleURI()<CR>
-" Linux {{{
+" Linux
 " nnoremap <localleader>u :silent !xdg-open <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
-" }}}
-" Dash {{{
+"
+" Dash
 
 " Search Dash for word under cursor
 function! SearchDash()
@@ -1364,9 +1367,9 @@ function! SearchDash()
 endfunction
 map <leader>x :call SearchDash()<CR>"
 
-" }}}
-" }}}
-" Autoread more often {{{
+"
+"
+" Autoread more often
 " If you are using a console version of Vim, or dealing
 " with a file that changes externally (e.g. a web server log)
 " then Vim does not always check to see if the file has been changed.
@@ -1541,19 +1544,23 @@ endfunction
 
 let autoreadargs={'autoread':1}
 execute WatchForChanges("*",autoreadargs)
-" }}}
+"
 
-" }}}
-" Environments (GUI/Console) ---------------------------------------------- {{{
+"
+" Environments (GUI/Console) ----------------------------------------------
+
+" Different cursors for different modes.
+set guicursor=n-c:block-Cursor-blinkon0
+set guicursor+=v:block-vCursor-blinkon0
+set guicursor+=i-ci:ver20-iCursor
 
 if has('gui_running')
     " GUI Vim
 
-	set linespace=2 "Prefer a slightly higher line height
-
-	" set guifont=Inconsolata-dz\ for\ Powerline:h13 " set fonts for gui vim
-	set guifont=Droid\ Sans\ Mono\ for\ Powerline:h13 " set fonts for gui vim
-	colorscheme badwolf
+	set linespace=1 "Prefer a slightly higher line height
+	set guifont=Inconsolata-g\ for\ Powerline:h14 " set fonts for gui vim
+	" set linespace=6 "Prefer a slightly higher line height
+	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14 " set fonts for gui vim
 
     " Remove all the UI cruft
 	set guioptions=acg
@@ -1565,11 +1572,6 @@ if has('gui_running')
 
 	" Should set local spell option
     highlight SpellBad term=underline gui=undercurl guisp=Orange
-
-    " Different cursors for different modes.
-    set guicursor=n-c:block-Cursor-blinkon0
-    set guicursor+=v:block-vCursor-blinkon0
-    set guicursor+=i-ci:ver20-iCursor
 
     if has("gui_macvim")
         " Full screen means FULL screen
@@ -1585,10 +1587,10 @@ else
     set mouse=a
 endif
 
-" }}}
-" In stasis ----------------------------------------------------------- {{{
+"
+" In stasis -----------------------------------------------------------
 
 "Set up an HTML5 template for all new .html files
 "autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
 
-" }}}
+"

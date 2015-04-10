@@ -1,220 +1,216 @@
 " `zR` to open all folds ಠ‿ಠ
 " `zM` to close all folds ಠ_ಠ
 
-" SnipMate {{{
-
-" Bundle 'SirVer/ultisnips'
-
-" }}}
 " YouCompleteMe: Autocomplete {{{
 
 " Need to run ./install.sh to get this running after update
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 " }}}
 " NERDTree {{{
 "
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 " }}}
-" Colorscheme: Badwolf {{{
+" Colorscheme {{{
 
-Bundle 'sjl/badwolf'
+Plugin 'sjl/badwolf'
+Plugin 'c10b10/vim-monokai'
 
 " }}}
 " PHP Doc {{{
 
-Bundle 'vim-scripts/PDV--phpDocumentor-for-Vim'
+Plugin 'vim-scripts/PDV--phpDocumentor-for-Vim'
 
 " }}}
 " Fancy status bar {{{
 
-" Bundle 'Lokaltog/vim-powerline'
+" Plugin 'Lokaltog/vim-powerline'
 " Backup of Poweline config
 " let g:Powerline_symbols = 'fancy'
 " call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 " let g:Powerline_colorscheme = 'badwolf'
 
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 
 " }}}
 "
 " Surround: Manage surrounding {{{
 
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 
 " }}}
-" Zen Coding {{{
+" Emmet {{{
 "
-Bundle 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 
 " }}}
 " Git management on steroids {{{
 "
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
 
 " }}}
 " Tabular: Text filtering & Alignement {{{
 
-Bundle 'godlygeek/tabular'
+Plugin 'godlygeek/tabular'
 
 " }}}
 " Gundo: Navigate the vim undo tree visually {{{
 "
-Bundle 'sjl/gundo.vim'
+Plugin 'sjl/gundo.vim'
 
 " }}}
 " Scratch: Adds Scratch Buffer {{{
 
-Bundle 'duff/vim-scratch'
+Plugin 'duff/vim-scratch'
 
 " }}}
 " Vim-Repeat: Extends the . repeat command {{{
 "
-Bundle 'tpope/vim-repeat'
+Plugin 'tpope/vim-repeat'
 
 " }}}
 " Unimpaired: Paired mappings for certain popular uses {{{
 
 " Complete list of mappings can be seen in the documentation
-Bundle 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-unimpaired'
 
 " }}}
 " Matchit: Extends % to match more than just single characters {{{
 
-Bundle 'edsono/vim-matchit'
+Plugin 'edsono/vim-matchit'
 
 " }}}
 " MatchTagAlways: Visually match html tags {{{
 
-Bundle 'Valloric/MatchTagAlways'
+Plugin 'Valloric/MatchTagAlways'
 
 " }}}
 " Taglist: A source code browser used by ctags {{{
 
-Bundle 'vim-scripts/taglist.vim'
+Plugin 'vim-scripts/taglist.vim'
 
 " }}}
 " Gist plugin {{{
 " Requirement
-Bundle 'mattn/webapi-vim'
-Bundle 'c10b10/gist-vim'
+Plugin 'mattn/webapi-vim'
+Plugin 'c10b10/gist-vim'
 " }}}
 " Vim-Session: Session management {{{
 
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-session'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
 
 " }}}
 " Trailing Whitespace: Removes trailing whitespaces {{{
 
-Bundle 'bronson/vim-trailing-whitespace'
+Plugin 'bronson/vim-trailing-whitespace'
 
 " }}}
 " Syntastic: Syntax errors highlighter {{{
 
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 
 " }}}
 " Syntax extenders {{{
 
-Bundle 'tpope/vim-markdown'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'vim-scripts/Trac-Wikimarkup'
-" Bundle 'saltstack/salt-vim'
-" Bundle 'ingydotnet/yaml-vim'
-Bundle 'nono/jquery.vim'
-Bundle 'tpope/vim-haml'
+Plugin 'tpope/vim-markdown'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'vim-scripts/Trac-Wikimarkup'
+" Plugin 'saltstack/salt-vim'
+" Plugin 'ingydotnet/yaml-vim'
+Plugin 'nono/jquery.vim'
+Plugin 'tpope/vim-haml'
 
 " }}}
 " Vitality of iTerm2 {{{
 
-Bundle 'sjl/vitality.vim'
+Plugin 'sjl/vitality.vim'
 
 " }}}
 " CoffeeScript & Coco {{{
 
-Bundle 'kchmck/vim-coffee-script'
-" Bundle 'satyr/vim-coco'
+Plugin 'kchmck/vim-coffee-script'
+" Plugin 'satyr/vim-coco'
 
 " }}}
 " Commenting {{{
 
-Bundle 'tpope/vim-commentary'
-" Bundle 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-commentary'
+" Plugin 'scrooloose/nerdcommenter'
 
 " }}}
 " IndexedSearch: Shows 'Nth match out of M' at search {{{
 
-Bundle 'vim-scripts/IndexedSearch'
+Plugin 'vim-scripts/IndexedSearch'
 
 " }}}
 " AutoCloses pairs like: [], (), '', "" {{{
 
-Bundle 'Raimondi/delimitMate'
-" Bundle 'kana/vim-smartinput'
+Plugin 'Raimondi/delimitMate'
+" Plugin 'kana/vim-smartinput'
 
 " }}}
 " CtrlP {{{
 
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 
 " }}}
 " Ack {{{
 
-Bundle 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 
 " }}}
 " ZoomWin {{{
 
-" Bundle 'ZoomWin'
+" Plugin 'ZoomWin'
 
 " }}}
 " Dash {{{
 
 if has('gui_running')
-    Bundle 'rizzatti/funcoo.vim'
-    Bundle 'rizzatti/dash.vim'
+    Plugin 'rizzatti/funcoo.vim'
+    Plugin 'rizzatti/dash.vim'
 endif
 
 " }}}
 " JSHint {{{
 
-    " Bundle 'wookiehangover/jshint.vim'
+    " Plugin 'wookiehangover/jshint.vim'
 
 " }}}
 " Slime {{{
 
-" Bundle 'jpalardy/vim-slime'
+" Plugin 'jpalardy/vim-slime'
 
 " }}}
 " Signify {{{
 
-Bundle 'mhinz/vim-signify'
+Plugin 'mhinz/vim-signify'
 
 " }}}
 " PHPComplete {{{
 
 " Autocompleter
-" Bundle 'shawncplus/phpcomplete.vim'
+" Plugin 'shawncplus/phpcomplete.vim'
 " Syntax highliter
-Bundle 'StanAngeloff/php.vim'
+Plugin 'StanAngeloff/php.vim'
 
 " }}}
 
 
 " OpenBrowser {{{
-Bundle 'tyru/open-browser.vim'
+Plugin 'tyru/open-browser.vim'
 " }}}
 
 " == Scala
 
 " Scala {{{
 
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'ktvoelker/sbt-vim'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'ktvoelker/sbt-vim'
 
 " }}}
 
@@ -222,23 +218,23 @@ Bundle 'ktvoelker/sbt-vim'
 
 " Greplace: `grep` Search and replace {{{
 
-" Bundle 'skwp/greplace.vim'
+" Plugin 'skwp/greplace.vim'
 
 " }}}
 
 " Twitter {{{
 
-" Bundle 'vim-scripts/TwitVim'
+" Plugin 'vim-scripts/TwitVim'
 
 " }}}
 " LiveReload {{{
 
-" Bundle 'flomotlik/vim-livereload'
+" Plugin 'flomotlik/vim-livereload'
 
 " }}}
 " Sudo-GUI: Sudo Save from VIM {{{
 
 	" Replaced by w!!
-	" Bundle 'gmarik/sudo-gui.vim'
+	" Plugin 'gmarik/sudo-gui.vim'
 
 " }}}
