@@ -31,10 +31,10 @@ install_mysql() {
     # http://blog.joefallon.net/2013/10/install-mysql-on-mac-osx-using-homebrew/
 
     echo_color "2. Installing mysql with homebrew..."
-    brew install homebrew/versions/mysql55 --enable-debug
-    brew link --force homebrew/versions/mysql55
-    # brew install mysql --enable-debug screw mysql 5.6
-    ech¬o_color "2. Done!"
+    # brew install homebrew/versions/mysql55 --enable-debug
+    # brew link --force homebrew/versions/mysql55
+    brew install mysql --enable-debug
+    echo_color "2. Done!"
 }
 
 secure_mysql() {
@@ -70,9 +70,9 @@ add_user() {
 }
 
 # pkill -f mysql
-# set -e
-# setup_mysql_brew
-# install_mysql
+set -e
+setup_mysql_brew
+install_mysql
 
 # Set the permissions on the mysql directory so mysql won't bitch
 # about PID stuff all the time

@@ -73,5 +73,3 @@ if [[ $(brew list | grep node) == 'node' ]]; then
     MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
     NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 fi
-
-export TESSDATA_PREFIX="/usr/local/Cellar/tesseract/3.02.02/share"

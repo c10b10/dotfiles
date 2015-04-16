@@ -1,67 +1,66 @@
 #!/usr/bin/env bash
+set -e
 
 # Change the editor to vim
 sudo update-alternatives --config editor
 
-# https://www.digitalocean.com/community/articles/how-to-add-and-delete-users-on-ubuntu-12-04-and-centos-6
-sudo usermod -aG sudo c10b10
-sudo adduser c10b10
-sudo /usr/sbin/visudo # And duplicate root line with c10b10
+read -e -p "Type the name of the new unix user: " NEW_USER
 
-# -a Appends the group to the list of existing groups
-# -g would replace the primary group
-sudo usermod -aG sudo c10b10
+setup_unix_user() {
+    # https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04
+    adduser $NEW_USER
+    gpasswd -a $NEW_USER sudo
 
-cd /home/c10b10
-mkdir .ssh
-cd .ssh
-ssh-keygen -t rsa -C "alex.ciobica@gmail.com"
-eval `ssh-agent -s`
-ssh-add
+    echo -e "User ${NEW_USER} created with sudo privileges."
+}
 
-sudo apt-get install zsh
+setup_user_ssh() {
+    # https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04
+    su - $NEW_USER
+    cd /home/${NEW_USER}
+    mkdir .ssh
+    chmod 700 .ssh
+    # Create rsa key
+    cd .ssh
+    read -e -p "Type the e-mail used for the ssh key generation: " EMAIL
+    ssh-keygen -t rsa -C $EMAIL
+    eval `ssh-agent -s`
+    ssh-add
+    # Create authorized keys
+    touch .ssh/authorized_keys
+    echo -e "\n1. Add your public key to /home/${NEW_USER}/authorized_keys"
+    echo -e "\n2. Restrict root login by setting PermitRootLogin to no in /etc/ssh/sshd_config"
+}
 
-# for ycm
-sudo apt-get install build-essential cmake
-sudo apt-get install python-dev
+install_zsh() {
+    sudo apt-get install zsh
+}
 
-sudo add-apt-repository ppa:git-core/ppa
-sudo add-apt-repositor ppa:nmi/vim-snapshots
-sudo apt-get update
-sudo apt-get upgrade
+install_latest_vim() {
+    sudo add-apt-repository ppa:nmi/vim-snapshots
+    sudo apt-get update
+    sudo apt-get install vim
 
-# https://www.digitalocean.com/community/articles/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-12-04
-# Follow these instructions to install LEMP
+    # for YouCompleteMe
+    # sudo apt-get install build-essential cmake
+    # sudo apt-get install python-dev
+}
 
-# for mysql, i had to change the user back to mysql in the config dile and link it to
-sudo ln -s ~/.dotfiles/mysql/my.cnf /etc/mysql/my.cnf
+install_git() {
+    # http://stackoverflow.com/questions/19109542/installing-latest-version-of-git-in-ubuntu
+    sudo add-apt-repository ppa:git-core/ppa
+    sudo apt-get update
+    sudo apt-get install git
+    git --version
 
+    echo -e "\nInstalled latest version of git."
+}
 
+install_nginx() {
+    # https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-14-04-lts
 
+    sudo apt-get update
+    sudo apt-get install nginx
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    echo -e "\nInstalled nginx. Check out https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-14-04-lts for more instructions."
+}

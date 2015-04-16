@@ -90,10 +90,9 @@ let maplocalleader = "\\"
 syntax on
 " let g:badwolf_tabline = 2
 " let g:badwolf_html_link_underline = 0
-colorscheme monokai
-" let g:monokai_thick_border = 1
-let g:monokai_italic = 1
-" colorscheme badwolf
+colorscheme badwolf
+" colorscheme monokai
+" let g:monokai_italic = 1
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -361,41 +360,41 @@ augroup END
 "
 " CSS and LessCSS
 
-augroup ft_css
-    au!
+" augroup ft_css
+"     au!
 
-    au BufNewFile,BufRead *.less setlocal filetype=less
+"     au BufNewFile,BufRead *.less setlocal filetype=less
 
-    au Filetype less,css setlocal foldmethod=marker
-    au Filetype less,css setlocal foldmarker={,}
-    au Filetype less,css setlocal omnifunc=csscomplete#CompleteCSS
-    au Filetype less,css setlocal iskeyword+=-
+"     au Filetype less,css setlocal foldmethod=marker
+"     au Filetype less,css setlocal foldmarker={,}
+"     au Filetype less,css setlocal omnifunc=csscomplete#CompleteCSS
+"     au Filetype less,css setlocal iskeyword+=-
 
-    " Use <leader>S to sort properties.  Turns this:
-    "
-    "     p {
-    "         width: 200px;
-    "         height: 100px;
-    "         background: red;
-    "
-    "         ...
-    "     }
-    "
-    " into this:
+"     " Use <leader>S to sort properties.  Turns this:
+"     "
+"     "     p {
+"     "         width: 200px;
+"     "         height: 100px;
+"     "         background: red;
+"     "
+"     "         ...
+"     "     }
+"     "
+"     " into this:
 
-    "     p {
-    "         background: red;
-    "         height: 100px;
-    "         width: 200px;
-    "
-    "         ...
-    "     }
-    au BufNewFile,BufRead *.less,*.css nnoremap <buffer> <localleader>S ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
+"     "     p {
+"     "         background: red;
+"     "         height: 100px;
+"     "         width: 200px;
+"     "
+"     "         ...
+"     "     }
+"     au BufNewFile,BufRead *.less,*.css nnoremap <buffer> <localleader>S ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
 
-    " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
-    " positioned inside of them AND the following code doesn't get unfolded.
-    au BufNewFile,BufRead *.less,*.css inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
-augroup END
+"     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
+"     " positioned inside of them AND the following code doesn't get unfolded.
+"     au BufNewFile,BufRead *.less,*.css inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
+" augroup END
 
 "
 " HTML
@@ -718,6 +717,16 @@ nnoremap <leader>es :tabedit ~/.vim/rc_extras/secret.vim<cr>
 
 "
 " Plugins ------------------------------------------------------------
+" Rainbow paranthesis
+
+" Make the vim-javascript plugin play nice with the rainbow plugin
+" https://github.com/pangloss/vim-javascript/issues/184
+autocmd FileType javascript syntax clear jsFuncBlock
+
+" Activate rainbow paranthesis
+let g:rainbow_active = 1
+
+"
 
 " Unimpaired
 
@@ -1558,7 +1567,8 @@ if has('gui_running')
     " GUI Vim
 
 	set linespace=1 "Prefer a slightly higher line height
-	set guifont=Inconsolata-g\ for\ Powerline:h14 " set fonts for gui vim
+	" set guifont=Inconsolata-g\ for\ Powerline:h14 " set fonts for gui vim
+	set guifont=M+\ 1m\ regular\ for\ Powerline:h15 " set fonts for gui vim
 	" set linespace=6 "Prefer a slightly higher line height
 	" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14 " set fonts for gui vim
 

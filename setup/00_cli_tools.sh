@@ -2,9 +2,10 @@
 set -e
 
 # Homebrew
-ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+# ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # TIP: `man brew` & `brew options %formula%`
+brew update
 
 # Install formulae
 brew install ack
@@ -18,11 +19,9 @@ brew install openssl
 brew install wget
 brew install pstree
 brew install htop
+brew install caskroom/cask/brew-cask
 
 # change permissions to avoid permissions errors on brew update
 sudo chown -R $USER /usr/local
-
-# de control
-brew update
 
 brew doctor

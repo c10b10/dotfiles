@@ -9,8 +9,8 @@ fi
 
 echo "Linking the config files..."
 
-rm -f $HOME/.oh-my-zsh
-rm -f $HOME/.vim
+rm -fr $HOME/.oh-my-zsh
+rm -fr $HOME/.vim
 ln -fs $C10_DOTFILES/ackrc $HOME/.ackrc
 ln -fs $C10_DOTFILES/agignore $HOME/.agignore
 ln -fs $C10_DOTFILES/ctags $HOME/.ctags

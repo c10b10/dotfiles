@@ -14,8 +14,8 @@ Plugin 'scrooloose/nerdtree'
 " }}}
 " Colorscheme {{{
 
-Plugin 'sjl/badwolf'
-Plugin 'c10b10/vim-monokai'
+Plugin 'c10b10/badwolf'
+" Plugin 'c10b10/vim-monokai'
 
 " }}}
 " PHP Doc {{{
@@ -48,6 +48,11 @@ Plugin 'mattn/emmet-vim'
 "
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
+
+" }}}
+" Signify: Shows git diff in the line number bar {{{
+
+Plugin 'mhinz/vim-signify'
 
 " }}}
 " Tabular: Text filtering & Alignement {{{
@@ -115,7 +120,8 @@ Plugin 'scrooloose/syntastic'
 " Syntax extenders {{{
 
 Plugin 'tpope/vim-markdown'
-Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'ap/vim-css-color'
 Plugin 'vim-scripts/Trac-Wikimarkup'
 Plugin 'tpope/vim-haml'
 
@@ -142,6 +148,14 @@ Plugin 'Raimondi/delimitMate'
 " Plugin 'kana/vim-smartinput'
 
 " }}}
+" Improve rainbow paranthesis {{{
+
+" Plugin 'junegunn/rainbow_parentheses.vim'
+Plugin 'luochen1990/rainbow'
+" Plugin 'oblitum/rainbow'
+" Plugin 'kien/rainbow_parentheses.vim'
+
+" }}}
 " CtrlP {{{
 
 Plugin 'kien/ctrlp.vim'
@@ -161,13 +175,14 @@ endif
 
 " }}}
 " JavaScript {{{
+    " Plugin 'jelera/vim-javascript-syntax'
     Plugin 'pangloss/vim-javascript'
     Plugin 'crusoexia/vim-javascript-lib'
     Plugin 'kchmck/vim-coffee-script'
 " }}}
-" Signify {{{
+" Splitjoin: Split and join onliners in css and other languages {{{
 
-Plugin 'mhinz/vim-signify'
+Plugin 'AndrewRadev/splitjoin.vim'
 
 " }}}
 " PHPComplete {{{
