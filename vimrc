@@ -396,7 +396,7 @@ nnoremap gp `[v`]
 nmap <silent> ,da :exec "1," . bufnr('$') . "bd"<cr>
 
 " Source .vimrc and leave the coursor in place.
-nmap <leader>eev :w<cr>mz:source $MYVIMRC<cr>`z
+nmap <leader>eev <cr>mz:source $MYVIMRC<cr>`z
 
 " Insert the directory of the current buffer in command line mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
