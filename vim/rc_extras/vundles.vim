@@ -211,6 +211,9 @@
 
     Plugin 'tpope/vim-commentary'
 
+    nnoremap <silent> \\ :Commentary<cr>
+    vnoremap <silent> \\ :Commentary<cr>
+
 " }}}
 " --------------------
 " Syntax extenders {{{
@@ -231,5 +234,5 @@
 " }}}
 " -------------
 " SaltStack {{{
-    " Plugin 'saltstack/salt-vim'
+    Plugin 'saltstack/salt-vim'
 " }}}
