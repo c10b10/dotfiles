@@ -55,6 +55,9 @@
     let NERDTreeShowLineNumbers=1
     let g:NERDTreeWinPos = "left"
     let g:NERDTreeWinSize = 40
+
+" }}}
+" -----------------------------------------
 " AutoCloses pairs like: [], (), '', "" {{{
 
     Plugin 'Raimondi/delimitMate'
