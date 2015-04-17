@@ -21,6 +21,7 @@
     " let g:badwolf_html_link_underline = 0
 
     Plugin 'c10b10/vim-monokai'
+
     colorscheme monokai
     let g:monokai_italic = 1
 
@@ -54,9 +55,6 @@
     let NERDTreeShowLineNumbers=1
     let g:NERDTreeWinPos = "left"
     let g:NERDTreeWinSize = 40
-
-" }}}
-" -----------------------------------------
 " AutoCloses pairs like: [], (), '', "" {{{
 
     Plugin 'Raimondi/delimitMate'
@@ -190,12 +188,6 @@
     Plugin 'sjl/gundo.vim'
 
     nmap <f5> :GundoToggle<cr>
-
-" }}}
-" --------------------------------------------
-" Vim-Repeat: Extends the . repeat command {{{
-
-    Plugin 'tpope/vim-repeat'
 
 " }}}
 " -------------------------------

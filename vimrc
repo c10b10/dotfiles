@@ -8,18 +8,6 @@
 " Be IMproved
 set nocompatible
 
-" ----------
-" Vundle {{{
-
-    filetype off " required!
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-    " Let Vundle manage Vundle (required!)
-    Plugin 'gmarik/vundle'
-    source ~/.vim/rc_extras/vundles.vim " Include my bundles
-    filetype plugin indent on " required
-
-" }}}
 " ------------------
 " Basic options  {{{
 
@@ -307,6 +295,24 @@ nnoremap <down>  :lnext<cr>zvzz
 set foldenable "Enable code folding
 set foldlevelstart=0
 
+" Change how the fold looks
+function! MyFoldText() "
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction "
+set foldtext=MyFoldText()
+
 "
 " Filetype-specific
 
@@ -389,8 +395,8 @@ nnoremap gp `[v`]
 "Delete all buffers (via Derek Wyatt)
 nmap <silent> ,da :exec "1," . bufnr('$') . "bd"<cr>
 
-" Source .vimrc
-nmap <leader>eev :source $MYVIMRC<cr>
+" Source .vimrc and leave the coursor in place.
+nmap <leader>eev :w<cr>mz:source $MYVIMRC<cr>`z
 
 " Insert the directory of the current buffer in command line mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
@@ -405,6 +411,9 @@ cnoremap <c-e> <end>
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
+" Sudo to write
+cnoremap w!! w !sudo tee % >/dev/null
+
 " Unfuck my screen
 nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
@@ -413,6 +422,18 @@ nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>eb :tabedit ~/.vim/rc_extras/vundles.vim<cr>
 nnoremap <leader>eh :tabedit ~/.vim/vim-shortcuts.txt<cr>
 nnoremap <leader>es :tabedit ~/.vim/rc_extras/transient.vim<cr>
+
+" }}}
+" ----------
+" Vundle {{{
+
+    filetype off " required!
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+    " Let Vundle manage Vundle (required!)
+    Plugin 'gmarik/vundle'
+    source ~/.vim/rc_extras/vundles.vim " Include my bundles
+    filetype plugin indent on " required
 
 " }}}
 " ----------------
