@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-pushd $C10_DOTFILES/vim/bundle/YouCompleteMe > /dev/null
-./install.sh
-popd > /dev/null
-echo "Done!"

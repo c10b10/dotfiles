@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-echo "dscacheutil -flushcache (reloads the /etc/hosts file)"
-echo 'sudo vim $(apache-vhosts-path)'
-echo 'sudo apachectl -k restart'
-echo 'sudo mysql.server restart'
-echo 'git@github.com:c10b10/wp-deploy-flow.git'
-echo 'git clone git@github.com:WordPress/WordPress.git'
-echo 'git@github.com:c10b10/wp-dev-tools.git'

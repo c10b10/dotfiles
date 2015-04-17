@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-chmod +x $C10_DOTFILES/bin/*

@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-echo $C10_DOTFILES/apache/httpd-vhosts.conf
