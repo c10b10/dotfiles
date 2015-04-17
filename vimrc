@@ -412,7 +412,7 @@ cnoremap <c-e> <end>
 nnoremap J mzJ`z
 
 " Sudo to write
-cnoremap w!! w !sudo tee % >/dev/null
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Unfuck my screen
 nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
