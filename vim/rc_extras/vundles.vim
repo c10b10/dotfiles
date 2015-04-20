@@ -54,7 +54,7 @@
     let NERDTreeBookmarksFile = expand('~/bin/dotfiles/vim/nt/NERDTreeBookmarks')
     let NERDTreeShowLineNumbers=1
     let g:NERDTreeWinPos = "left"
-    let g:NERDTreeWinSize = 40
+    let g:NERDTreeWinSize = 35
 
 " }}}
 " -----------------------------------------
