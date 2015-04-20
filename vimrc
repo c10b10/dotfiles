@@ -295,6 +295,18 @@ nnoremap <down>  :lnext<cr>zvzz
 set foldenable "Enable code folding
 set foldlevelstart=0
 
+" "Focus" the current line.  Basically:
+"
+" 1. Close all folds.
+" 2. Open just the folds containing the current line.
+" 3. Move the line to a little bit (15 lines) above the center of the screen.
+" 4. Pulse the cursor line.  My eyes are bad.
+"
+" This mapping wipes out the z mark, which I never use.
+"
+" I use :sus for the rare times I want to actually background Vim.
+nnoremap <c-z> mzzMzvzz15<c-e>`z:Pulse<cr>
+
 " Change how the fold looks
 function! MyFoldText() "
     let line = getline(v:foldstart)
@@ -411,8 +423,8 @@ cnoremap <c-e> <end>
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
-" Sudo to write
-command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+" I keep pressing the damn shift
+cnoremap W<cr> w<cr>
 
 " Unfuck my screen
 nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
