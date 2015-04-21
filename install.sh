@@ -1,10 +1,11 @@
 #!/bin/bash
 
-. $HOME/.c10
+. c10
 
 rm -rf $HOME/.vim
 
 readarray <<HERE
+c10
 ackrc
 agignore
 vimrc
