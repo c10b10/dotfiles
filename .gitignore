@@ -7,7 +7,7 @@ php/php.ini
 apache/httpd-vhosts.conf
 
 vim/bundle/*
-!vim/bundle/vundle
+!vim/bundle/README.md
 
 vim/sessions/*
 !vim/sessions/README.dm
