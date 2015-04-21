@@ -17,8 +17,8 @@ HERE
 
 for file in "${MAPFILE[@]}"; do
   # remove trailing new line
-  echo "Linking $cleanfile to $HOME/.$cleanfile"
   cleanfile=$(echo -n $file)
+  echo "Linking $cleanfile to $HOME/.$cleanfile"
   rm -rf $HOME/.$cleanfile
   ln -fs $C10_DOTFILES/$cleanfile $HOME/.$cleanfile
 done
