@@ -15,9 +15,9 @@ npmrc
 gitignore
 HERE
 
-echo "$C10_DOTFILES"
 for file in "${MAPFILE[@]}"; do
   # remove trailing new line
+  echo "Linking $cleanfile to $HOME/.$cleanfile"
   cleanfile=$(echo -n $file)
   rm -rf $HOME/.$cleanfile
   ln -fs $C10_DOTFILES/$cleanfile $HOME/.$cleanfile
