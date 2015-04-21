@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. $(pwd)/c10
+. $HOME/.dotfiles/c10
 
 rm -rf $HOME/.vim
 
