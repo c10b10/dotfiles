@@ -50,6 +50,7 @@
     let NERDTreeDirArrows = 1
     let NERDChristmasTree = 1
     let NERDTreeChDirMode = 1
+    let NERDTreeAutoDeleteBuffer = 1
     let NERDTreeMapJumpFirstChild = 'gK'
     let NERDTreeBookmarksFile = expand('~/bin/dotfiles/vim/nt/NERDTreeBookmarks')
     let NERDTreeShowLineNumbers=1
