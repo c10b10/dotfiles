@@ -17,6 +17,7 @@ ZSH_THEME="c10-srv"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 DISABLE_CORRECTION="true"
+DISABLE_AUTO_UPDATE="true"
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
