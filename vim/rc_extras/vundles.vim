@@ -52,7 +52,7 @@
     let NERDTreeChDirMode = 1
     let NERDTreeAutoDeleteBuffer = 1
     let NERDTreeMapJumpFirstChild = 'gK'
-    let NERDTreeBookmarksFile = expand('~/bin/dotfiles/vim/nt/NERDTreeBookmarks')
+    let NERDTreeBookmarksFile = expand('~/.vim/nt/NERDTreeBookmarks')
     let NERDTreeShowLineNumbers=1
     let g:NERDTreeWinPos = "left"
     let g:NERDTreeWinSize = 35
