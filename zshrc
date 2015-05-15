@@ -20,5 +20,5 @@ export C10_DOTFILES=${C10_DOTFILES%/}
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # Fix SaltStack UTF-8 issue
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
