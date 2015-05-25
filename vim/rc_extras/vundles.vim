@@ -227,6 +227,7 @@
     Plugin 'ap/vim-css-color'
     Plugin 'vim-scripts/Trac-Wikimarkup'
     Plugin 'tpope/vim-haml'
+    Plugin 'mustache/vim-mustache-handlebars'
 
 " }}}
 " --------------

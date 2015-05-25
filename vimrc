@@ -64,6 +64,7 @@ au BufRead,BufNewFile *.wiki set syntax=wiki
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 au BufRead,BufNewFile *.sls set ft=sls syntax=sls
 au BufRead,BufNewFile *.jinja set ft=sls syntax=sls
+au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=handlebars
 
 " Highlight version control conflict markers
 " match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'

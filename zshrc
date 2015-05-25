@@ -16,6 +16,7 @@ export C10_DOTFILES=${C10_DOTFILES%/}
 # - the oh-my-zsh config
 . $C10_DOTFILES/shell/global.bash
 . $C10_DOTFILES/shell/oh_my_zsh.bash
+. $C10_DOTFILES/shell/alias.bash
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
