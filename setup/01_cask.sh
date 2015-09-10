@@ -6,10 +6,9 @@ set -e
 apps=(
   alfred
   dropbox
-  google-chrome-beta
+  # google-chrome-beta
   qlcolorcode
   transmit
-  appcleaner
   # hazel
   qlmarkdown
   flash
