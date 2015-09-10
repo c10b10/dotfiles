@@ -18,6 +18,7 @@ ln -fs $C10_DOTFILES/vimrc $HOME/.vimrc
 ln -fs $C10_DOTFILES/vim/ $HOME/.vim
 ln -fs $C10_DOTFILES/zshrc $HOME/.zshrc
 ln -fs $C10_DOTFILES/npmrc $HOME/.npmrc
+ln -fs $C10_DOTFILES/mackup.cfg $HOME/.mackup.cfg
 ln -fs $C10_DOTFILES/gitconfig $HOME/.gitconfig
 ln -fs $C10_DOTFILES/gitignore $HOME/.gitignore
 ln -fs $C10_DOTFILES/oh-my-zsh/ $HOME/.oh-my-zsh

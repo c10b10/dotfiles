@@ -20,6 +20,7 @@ brew install wget
 brew install pstree
 brew install htop
 brew install caskroom/cask/brew-cask
+brew install mackup
 
 # change permissions to avoid permissions errors on brew update
 sudo chown -R $USER /usr/local

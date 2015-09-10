@@ -32,8 +32,10 @@ apps=(
   xld
   the-unarchiver
   limechat
+  keepingyouawake
 )
 
+brew update
 brew install caskroom/cask/brew-cask
 brew tap caskroom/versions
 
