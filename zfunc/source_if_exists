@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# http://zsh.sourceforge.net/Doc/Release/Conditional-Expressions.html
+# http://serverfault.com/questions/52034/what-is-the-difference-between-double-and-single-square-brackets-in-bash
+source_if_exists() {
+    if [ -s $1 ]
+    then
+        source $1
+    fi
+}

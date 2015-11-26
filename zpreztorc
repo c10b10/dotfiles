@@ -1,0 +1,60 @@
+#
+# Sets Prezto options.
+# More info in each readme at:
+# https://github.com/sorin-ionescu/prezto/tree/master/modules
+#
+
+# Color output (auto set to 'no' on dumb terminals).
+zstyle ':prezto:*:*' color 'yes'
+
+# Load the following Prezto modules.
+# The order matters.
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'archive' \
+  'utility' \
+  'completion' \
+  'terminal' \
+  'editor' \
+  'history' \
+  'syntax-highlighting' \
+  'history-substring-search' \
+  'directory' \
+  'git' \
+  'rsync' \
+  'spectrum' \
+  'prompt'
+
+# Module: prompt
+# --------------
+zstyle ':prezto:module:prompt' theme 'sorin'
+
+# Module: syntax-highlighting
+# ---------------------------
+zstyle ':prezto:module:syntax-highlighting' highlighters \
+  'main' \
+  'brackets' \
+  'pattern' \
+  'cursor' \
+  'root'
+
+# Module: git
+# -----------
+# Ignore submodules status on 'git status'
+zstyle ':prezto:module:git:status:ignore' submodules 'all'
+
+# Module: editor
+# --------------
+# Set the key mapping style to 'emacs' or 'vi'.
+zstyle ':prezto:module:editor' key-bindings 'emacs'
+
+# Module: terminal
+# ----------------
+# Auto set the tab and window titles.
+# zstyle ':prezto:module:terminal' auto-title 'yes'
+
+# Set the window title format.
+# zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
+
+# Set the tab title format.
+# zstyle ':prezto:module:terminal:tab-title' format '%m: %s'

@@ -1,25 +1,19 @@
-# include the config file if it exists
-[[ -f "$HOME/.c10" ]] && . $HOME/.c10
+# zsh reads your config files in the following order:
+# 1. ~/.zshenv: Defines env variables, and global helpers
+# 2. ~/.zshrc: Aliases, shell options, keybinding, functions
+# 3. ~/.zpreztorc: Configures prezto
+# 4. ~/.zlogin: Greetings or creation of files
 
-if [[ -z $C10_DOTFILES ]] || [[ ! -d $C10_DOTFILES ]]; then
-    echo -e "You must create a ~/.c10 file which exports the variable C10_DOTFILES with the path to the \"dotfiles\" repo.\nExample of ~/.c10:"
-    echo -e "\nexport C10_DOTFILES=\$HOME/.dotfiles\n"
-    echo -e "If that file exists, make sure the path is correct.\n"
-    return
-fi
+# Autoload functions
+# - async: needed by the shell theme
+# - source_if_exists: helper function
+autoload -Uz async source_if_exists && async
 
-# sanitize to remove the trailing slash
-export C10_DOTFILES=${C10_DOTFILES%/}
+# Source Prezto.
+source_if_exists $HOME/.zprezto/init.zsh
 
-# Load the environment. Source:
-# - the global functions and variables
-# - the oh-my-zsh config
-. $C10_DOTFILES/shell/global.bash
-. $C10_DOTFILES/shell/oh_my_zsh.bash
-. $C10_DOTFILES/shell/alias.bash
+# Source z. https://github.com/rupa/z
+source $C10_DOTFILES/zmodules/z-zsh/z.sh
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-# Fix SaltStack UTF-8 issue
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US.UTF-8"
+# Aliases
+alias suas="sudo su -s /bin/bash -"

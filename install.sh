@@ -1,24 +1,25 @@
 #!/bin/bash
 
-. $HOME/.dotfiles/c10
+symlinks=( \
+    'ackrc' \
+    'agignore' \
+    'vimrc' \
+    'vim' \
+    'npmrc' \
+    'gitignore' \
+    'zlogin' \
+    'zshenv' \
+    'zshrc' \
+    'zmodules/zprezto' \
+    'zpreztorc' \
+)
 
-rm -rf $HOME/.vim
+echo "Initializing submodules"
+git submodule update --init --recursive
 
-readarray <<HERE
-c10
-ackrc
-agignore
-vimrc
-vim
-zshrc
-npmrc
-gitignore
-HERE
-
-for file in "${MAPFILE[@]}"; do
-  # remove trailing new line
-  cleanfile=$(echo -n $file)
-  echo "Linking $cleanfile to $HOME/.$cleanfile"
-  rm -rf $HOME/.$cleanfile
-  ln -fs $C10_DOTFILES/$cleanfile $HOME/.$cleanfile
+for file in "${symlinks[@]}"; do
+  # http://stackoverflow.com/questions/9532654/bash-expression-after-last-specific-character
+  echo "Linking $file to $HOME/.${file##*/}"
+  rm -rf $HOME/.$file
+  ln -fs $C10_DOTFILES/$file $HOME/.${file##*/}
 done
