@@ -5,3 +5,4 @@
 !*.swf
 *.sql
 tags
+node_modules/*
