@@ -15,5 +15,9 @@ source_if_exists $HOME/.zprezto/init.zsh
 # Source z. https://github.com/rupa/z
 source $C10_DOTFILES/zmodules/z-zsh/z.sh
 
+# Disable autocorrection, needs to be done after prezto init
+unsetopt CORRECT
+
 # Aliases
 alias suas="sudo su -s /bin/bash -"
+alias zreboot="exec zsh"

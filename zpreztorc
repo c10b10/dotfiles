@@ -6,9 +6,12 @@
 
 # Color output (auto set to 'no' on dumb terminals).
 zstyle ':prezto:*:*' color 'yes'
+# Disable colors for ls because we define our own in zshenv
+zstyle ':prezto:module:utility:ls' color 'no'
 
 # Load the following Prezto modules.
 # The order matters.
+# Utility autoloads spectrum and helper
 zstyle ':prezto:load' pmodule \
   'environment' \
   'archive' \
@@ -27,7 +30,7 @@ zstyle ':prezto:load' pmodule \
 
 # Module: prompt
 # --------------
-zstyle ':prezto:module:prompt' theme 'sorin'
+zstyle ':prezto:module:prompt' theme 'charlie'
 
 # Module: syntax-highlighting
 # ---------------------------
@@ -37,6 +40,20 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
   'pattern' \
   'cursor' \
   'root'
+
+# Edit syntax highlighting styles
+# Full list in modules/syntax-highlighters/external/hightlighters/main.zsh:32
+zstyle ':prezto:module:syntax-highlighting' styles \
+  'alias' 'fg=112' \
+  'suffix-alias' 'fg=112,underline' \
+  'builtin' 'fg=112' \
+  'function' 'fg=112' \
+  'command' 'fg=112' \
+  'precommand' 'fg=112,underline' \
+  'hashed-command' 'fg=112' \
+  'unknown-token' 'fg=160,bold' \
+  'globbing' 'fg=081' \
+  'history-expansion' 'fg=081' \
 
 # Module: git
 # -----------
