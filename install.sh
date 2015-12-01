@@ -1,5 +1,5 @@
 #!/bin/bash
-C10_DOTFILES={$1:-$C10_DOTFILES}
+C10_DOTFILES=${1:-C10_DOTFILES}
 
 symlinks=( \
     'ackrc' \
