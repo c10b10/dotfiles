@@ -44,13 +44,13 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 # Edit syntax highlighting styles
 # Full list in modules/syntax-highlighters/external/hightlighters/main.zsh:32
 zstyle ':prezto:module:syntax-highlighting' styles \
-  'alias' 'fg=112' \
-  'suffix-alias' 'fg=112,underline' \
-  'builtin' 'fg=112' \
-  'function' 'fg=112' \
-  'command' 'fg=112' \
-  'precommand' 'fg=112,underline' \
-  'hashed-command' 'fg=112' \
+  'alias' 'fg=green' \
+  'suffix-alias' 'fg=green,underline' \
+  'builtin' 'fg=green' \
+  'function' 'fg=green' \
+  'command' 'fg=green' \
+  'precommand' 'fg=green,underline' \
+  'hashed-command' 'fg=green' \
   'unknown-token' 'fg=160,bold' \
   'globbing' 'fg=081' \
   'history-expansion' 'fg=081' \
