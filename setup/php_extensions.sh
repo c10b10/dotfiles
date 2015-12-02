@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /bin/zsh
 
 # Usage: ~/.dotfiles/setup/02_php_extensions.sh [php5x]
 # If the script argument is omitted, the PHP_EXTENSIONS wil be installed for the PHP_VERSIONS defined

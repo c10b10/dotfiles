@@ -1,29 +1,25 @@
-#!/bin/bash
+#! /bin/zsh
 set -e
 
-# Homebrew
+scriptpath=`dirname "$0"` scriptpath=`cd "$scriptpath" && pwd`
+source ${scriptpath}/lib/util.sh $0
 
 apps=(
   alfred
   dropbox
   google-chrome-beta
-  qlcolorcode
   transmit
-  appcleaner
+  # appcleaner
   # hazel
-  qlmarkdown
   flash
   iterm2
-  qlprettypatch
   bettertouchtool
   sublime-text3
   flux
   calibre
-  qlstephen
   vlc
   # cloudup
   # nvalt
-  quicklook-json
   screenhero
   skype
   utorrent
@@ -32,12 +28,26 @@ apps=(
   xld
   the-unarchiver
   limechat
+  # QL plugins:
+  qlcolorcode
+  qlmarkdown
+  qlprettypatch
+  qlstephen
+  quicklook-json
+  quicklook-csv
+  betterzipql
+  qlimagesize
+  webpquicklook
+  suspicious-package
 )
 
 brew install caskroom/cask/brew-cask
 brew tap caskroom/versions
 
-echo "installing apps..."
+echo_color "Installing apps..."
 brew cask install --appdir="/Applications" ${apps[@]}
+echo_done
 
 brew cask alfred link
+
+fin

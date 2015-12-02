@@ -1,8 +1,12 @@
-#!/usr/bin/env bash
-
-# Instructions: http://mac-dev-env.patrickbougie.com/memcached/
+#! /bin/zsh
 
 set -e
+
+# Include utils
+scriptpath=`dirname "$0"` scriptpath=`cd "$scriptpath" && pwd`
+source ${scriptpath}/lib/util.sh $0
+
+# Instructions: http://mac-dev-env.patrickbougie.com/memcached/
 
 # TODO Seems that php5x-memecached extension instsalls the brew as well... huh?
 function get_memcached() {
@@ -30,3 +34,5 @@ function get_memcached() {
 read -p "Memcached version (See: http://memcached.org/): " MEM_VER
 
 get_memcached $MEM_VER
+
+fin "<m(__)m>, your $(royal)."

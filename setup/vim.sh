@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /bin/zsh
 echo -e "There's nothin I can do except tell you what you can do."
 echo -e "1. Make sure you have run 'git submodule update --init --recursive' from the dotfiles repo."
 echo -e "1.1. Install vim & macvim with homebrew."

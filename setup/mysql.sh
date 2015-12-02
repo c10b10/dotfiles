@@ -1,4 +1,8 @@
-#!/usr/bin/env bash
+#! /bin/zsh
+
+# Include utils
+scriptpath=`dirname "$0"` scriptpath=`cd "$scriptpath" && pwd`
+source ${scriptpath}/lib/util.sh $0
 
 # = TIPS
 
@@ -11,19 +15,12 @@
 # MYSQL_VERSION="$(ls $path)"
 # echo $MYSQL_VERSION
 
-echo_color()
-{
-    background=${2-'47'}
-    foreground=${3-'0;30'}
-    echo -e "\033[${foreground}m\033[${background}m$1\033[0m";
-}
-
 setup_mysql_brew() {
     echo_color "1. Updating homebrew and its formulas..."
     brew update
     brew upgrade
     brew tap homebrew/versions
-    echo_color "1. Done!"
+    echo_done
 }
 
 
@@ -34,13 +31,13 @@ install_mysql() {
     # brew install homebrew/versions/mysql55 --enable-debug
     # brew link --force homebrew/versions/mysql55
     brew install mysql --enable-debug
-    echo_color "2. Done!"
+    echo_done
 }
 
 secure_mysql() {
     echo_color "3. Secure the mysql setup..."
     sudo mysql_secure_installation
-    echo_color "3. Done!"
+    echo_done
 }
 
 link_config() {
@@ -48,7 +45,7 @@ link_config() {
     # /etc/my.cnf /etc/mysql/my.cnf /usr/local/etc/my.cnf ~/.my.cnf
     echo_color "4. Setting up the mysql config..."
     mysql-deploy-conf 'false'
-    echo_color "4. Done!"
+    echo_done
 }
 
 add_user() {
@@ -66,7 +63,7 @@ add_user() {
     else
         echo -e '\nYou will only be allowed to login to mysql using root (i.e.: mysql -uroot -p), unless you kept anonymous login.'
     fi
-    echo_color "5. Done!"
+    echo_done
 }
 
 # pkill -f mysql
@@ -82,5 +79,4 @@ secure_mysql
 set +e
 add_user
 
-echo_color "\nAll done!"
-
+royal_fin
