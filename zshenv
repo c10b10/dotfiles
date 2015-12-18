@@ -46,7 +46,10 @@ if [ -f $HOME/.rvm/bin/rvm-prompt ]; then
 fi
 
 # Python
-export WORKON_HOME=$HOME/.virtualenvs
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+    export WORKON_HOME=$HOME/.virtualenvs
+fi
 
 # Node
 if command -v node >/dev/null 2>&1; then
