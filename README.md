@@ -10,3 +10,11 @@
 1. Run whatever scripts are needed from `~/.dotfiles/setup`
 
 You might want to modify the user settings in .gitconfig.
+
+### Vim
+
+If you installed the python tools with homebrew `brew install python`, make sure
+you install MacVim using cask if you want for the YouCompleteMe plugin to work.
+See more about how to do that
+[in this thread](https://github.com/Valloric/YouCompleteMe/issues/18#issuecomment-146546485)
+on the YCM repo.
