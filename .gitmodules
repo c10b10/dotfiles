@@ -3,7 +3,7 @@
 	url = https://github.com/rupa/z.git
 [submodule "zmodules/zprezto"]
 	path = zmodules/zprezto
-	url = git@github.com:c10b10/prezto.git
+	url = https://github.com/c10b10/prezto.git
 [submodule "vim/bundle/vundle"]
 	path = vim/bundle/vundle
 	url = https://github.com/VundleVim/Vundle.vim.git
