@@ -10,6 +10,6 @@
 [submodule "fish/modules/z-fish"]
 	path = fish/modules/z-fish
 	url = https://github.com/sjl/z-fish.git
-[submodule "fish/modules/pure-theme"]
-	path = fish/modules/pure-theme
-	url = https://github.com/c10b10/pure.fish.git
+[submodule "fish/modules/charlie-theme"]
+	path = fish/modules/charlie-theme
+	url = https://github.com/c10b10/charlie-theme.fish
