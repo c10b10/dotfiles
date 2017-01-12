@@ -46,12 +46,13 @@ if python -c "import virtualfish" >/dev/null 2>&1
 end
 # Node
 if command -v node >/dev/null 2>&1
-    prepend_to_path (npm config get prefix)
-    set -xg NPM_PACKAGES "$HOME/.npm-packages"
+    set -xg NPM_PACKAGES (npm config get prefix)
     set -e MANPATH
     set mp (manpath)
     set -xg MANPATH "$NPM_PACKAGES/share/man:$mp"
     set -xg NODE_PATH "$NPM_PACKAGES/lib/node_modules"
+    prepend_to_path $NPM_PACKAGES/bin
+    prepend_to_path './node_modules/.bin'
 end
 prepend_to_path "$C10_DOTFILES/bin"
 
