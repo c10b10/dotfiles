@@ -87,10 +87,10 @@ set softtabstop=4
 set textwidth=80
 set wrap " as opposed to nowrap
 set formatoptions=qrn1
-au BufNewFile,BufRead *.php setlocal tabstop=4
-au BufNewFile,BufRead *.scss setlocal tabstop=2 softtabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.php setlocal noexpandtab
-au BufNewFile,BufRead *.js,*.py,*.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+au BufNewFile,BufEnter *.php setlocal tabstop=4
+au BufNewFile,BufEnter *.scss setlocal tabstop=2 softtabstop=2 shiftwidth=2
+au BufNewFile,BufEnter *.php setlocal noexpandtab
+au BufNewFile,BufEnter *.js,*.py,*.html,*.vim,*.sls setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 "
 " Wildmenu (Command line) completion

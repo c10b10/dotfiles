@@ -25,6 +25,7 @@ brew install pstree
 brew install htop
 brew install rsync
 brew install caskroom/cask/brew-cask
+brew install fish
 
 brew doctor
 

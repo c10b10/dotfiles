@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+. $HOME/.c10
+MATCH=${1-'*'}
+salt-ssh -i --config-dir=$C10_SALT_CONFIG_DIR --roster-file=$C10_SALT_ROSTER --priv=$C10_SALT_KEY "$MATCH" state.highstate

@@ -29,6 +29,17 @@ echo_done() {
     echo -e
 }
 
+exit_if_fail() {
+  set +e
+  `$0`
+  if [[ "$?" != 0 ]]; then
+    set -e
+    echo_color "$1"
+    exit 1
+  fi
+  set -e
+}
+
 royal() {
     local attr names index1 index2
     attr=(\

@@ -36,3 +36,5 @@
 
     shelve = stash save --include-untracked
     unshelve = stash pop
+[credential]
+	helper = osxkeychain

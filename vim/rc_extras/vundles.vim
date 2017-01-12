@@ -2,6 +2,20 @@
 " `zM` to close all folds ಠ_ಠ
 " `za` to open current fold
 
+
+
+Plugin 'Valloric/YouCompleteMe'
+
+let g:ycm_key_invoke_completion = '<C-S-Space>'
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+
+" --------------------
+" Wakatime tracker {{{
+" --------------------
+"Bundle 'wakatime/vim-wakatime'
+"    let g:wakatime_PythonBinary = '/usr/local/bin/python'
+" }}}
 " ----------------------
 " Vitality of iTerm2 {{{
 
@@ -30,28 +44,31 @@
 " NERDTree {{{
 
     Plugin 'scrooloose/nerdtree'
+    Plugin 'jistr/vim-nerdtree-tabs'
+    
+    noremap  <leader>nt :NERDTreeTabsToggle<cr>
+    noremap  <leader>nf :NERDTreeTabsFind<cr>
 
-    noremap  <leader>nt :NERDTreeToggle<cr>
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-    augroup ps_nerdtree
-        au!
 
-        au Filetype nerdtree setlocal nolist
-        " au Filetype nerdtree nnoremap <buffer> K :q<cr>
-    augroup END
+    " augroup ps_nerdtree
+    "     au!
 
-    let NERDTreeHighlightCursorline = 1
+    "     au Filetype nerdtree setlocal nolist
+    "     " au Filetype nerdtree nnoremap <buffer> K :q<cr>
+    " augroup END
+
     let NERDTreeIgnore = ['\~$', '.git$[[dir]]', '.DS_Store', '.*\.pyc$',
                         \ 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid',
                         \ 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db',
                         \ 'tags.bak']
     let NERDTreeShowHidden = 1
+    let NERDTreeHighlightCursorline = 1
     let NERDTreeMinimalUI = 1
     let NERDTreeDirArrows = 1
-    let NERDChristmasTree = 1
-    let NERDTreeChDirMode = 1
     let NERDTreeAutoDeleteBuffer = 1
-    let NERDTreeMapJumpFirstChild = 'gK'
     let NERDTreeBookmarksFile = expand('~/.vim/nt/NERDTreeBookmarks')
     let NERDTreeShowLineNumbers=1
     let g:NERDTreeWinPos = "left"
@@ -182,7 +199,7 @@
 
     Plugin 'mileszs/ack.vim'
 
-    nnoremap <leader>a :Ack! -G php<space>
+    nnoremap <leader>a :Ack! -G scss<space>
     let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " }}}
@@ -219,6 +236,12 @@
     vnoremap <silent> \\ :Commentary<cr>
 
 " }}}
+" ----------------------------------------
+" Syntastic: Syntax errors highlighter {{{
+
+Plugin 'scrooloose/syntastic'
+
+" }}}
 " --------------------
 " Syntax extenders {{{
 
@@ -228,6 +251,7 @@
     Plugin 'vim-scripts/Trac-Wikimarkup'
     Plugin 'tpope/vim-haml'
     Plugin 'mustache/vim-mustache-handlebars'
+    Plugin 'digitaltoad/vim-jade'
 
 " }}}
 " --------------
