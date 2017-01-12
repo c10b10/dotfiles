@@ -23,3 +23,5 @@ vim/tmp/backup/*
 !vim/tmp/backup/README.md
 
 vim/.netrwhist
+
+fish/fishd.*
