@@ -21,6 +21,7 @@ vim/tmp/backup/*
 !vim/tmp/undo/README.md
 !vim/tmp/swap/README.md
 !vim/tmp/backup/README.md
+vim/rc_extras/transient*
 
 vim/.netrwhist
 
