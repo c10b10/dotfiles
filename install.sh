@@ -32,6 +32,7 @@ change_shell_to_zsh() {
 
 setup_fish() {
     echo_color "Installing fish config..."
+    mkdir $HOME/.config &> /dev/null
     rm -rf $HOME/.config/fish
     echo_color "Linking config file to ${HOME}/.config/fish..."
     ln -fs $dotpath/fish $HOME/.config/fish
