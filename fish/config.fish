@@ -66,3 +66,18 @@ function make_completion --argument alias command
 end
 
 make_completion g "git"
+
+function start_ssh_agent -d "Starts ssh agent if it's not online"
+    # Start SSH agent if not started
+    if test -z $SSH_AGENT_PID
+      set -x SSH_ENV (ssh-agent -c | sed 's/^echo/#echo/')
+      eval $SSH_ENV
+      chmod 600 $SSH_AUTH_SOCK
+    end
+    # Add ssh keys if no identities are added
+    if ssh-add -l | grep "The agent has no identities" > /dev/null
+      ssh-add -K (ls ~/.ssh/id* | grep -v "\.pub") > /dev/null 2>&1
+    end
+end
+
+start_ssh_agent
