@@ -415,7 +415,7 @@ nmap <silent> ,da :exec "1," . bufnr('$') . "bd"<cr>
 nmap <leader>eev <cr>mz:source $MYVIMRC<cr>`z
 
 " Insert the directory of the current buffer in command line mode
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+" cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " Panic Button!!!
 nnoremap <f9> mzggg?G`z

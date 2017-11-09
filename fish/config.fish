@@ -54,6 +54,11 @@ if command -v node >/dev/null 2>&1
     prepend_to_path $NPM_PACKAGES/bin
     prepend_to_path './node_modules/.bin'
 end
+# RVM
+if test -e $HOME/.rvm/bin/rvm-prompt
+  prepend_to_path "$HOME/.rvm/bin"
+  rvm default
+end
 prepend_to_path "$C10_DOTFILES/bin"
 
 . $C10_DOTFILES/fish/extras/aliases.fish

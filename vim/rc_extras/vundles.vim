@@ -4,11 +4,11 @@
 
 
 
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 
-let g:ycm_key_invoke_completion = '<C-S-Space>'
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+" let g:ycm_key_invoke_completion = '<C-S-Space>'
+" let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+" let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 
 " --------------------
 " Wakatime tracker {{{
@@ -139,15 +139,15 @@ let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 " ------------------------------------------------------------
 " Matchit: Extends % to match more than just single characters {{{
 
-    Plugin 'edsono/vim-matchit'
+    " Plugin 'adelarsq/vim-matchit'
 
     " Match % with tab
-    runtime macros/matchit.vim
-    map <tab> %
-    if mapcheck( '[%' )
-        unmap [%
-        unmap ]%
-    endif
+    " runtime macros/matchit.vim
+    " map <tab> %
+    " if mapcheck( '[%' )
+    "     unmap [%
+    "     unmap ]%
+    " endif
 
 " }}}
 " -------------------------------------------------------
