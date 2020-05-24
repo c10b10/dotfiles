@@ -39,6 +39,16 @@ prepend_to_path "/bin"
 prepend_to_path "/usr/bin"
 prepend_to_path "/usr/local/bin"
 prepend_to_path "/usr/local/sbin"
+
+# NVM
+if test -e $C10_DOTFILES/fish/functions/bass.fish
+    function nvm
+        bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+    end
+
+    set -xg NVM_DIR $HOME/.nvm
+    nvm use default --silent
+end
 # Python
 if python -c "import virtualfish" >/dev/null 2>&1
     eval (python -m virtualfish)
@@ -54,6 +64,7 @@ if command -v node >/dev/null 2>&1
     prepend_to_path $NPM_PACKAGES/bin
     prepend_to_path './node_modules/.bin'
 end
+
 # RVM
 if test -e $HOME/.rvm/bin/rvm-prompt
   prepend_to_path "$HOME/.rvm/bin"

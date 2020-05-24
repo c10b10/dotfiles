@@ -7,7 +7,8 @@ source ${scriptpath}/lib/util.sh $0
 apps=(
   alfred
   dropbox
-  google-chrome-beta
+  dashlane
+  google-chrome
   transmit
   # appcleaner
   # hazel
@@ -15,18 +16,18 @@ apps=(
   iterm2
   bettertouchtool
   sublime-text3
-  flux
   calibre
   vlc
-  # cloudup
-  # nvalt
-  screenhero
+  quip
+  telegram
   skype
   utorrent
-  gitx-rowanj
+  fork
   imageoptim
   xld
   the-unarchiver
+  visual-studio-code
+  spotify
   limechat
   # QL plugins:
   qlcolorcode
@@ -39,6 +40,7 @@ apps=(
   qlimagesize
   webpquicklook
   suspicious-package
+  keepingyouawake
 )
 
 brew install caskroom/cask/brew-cask

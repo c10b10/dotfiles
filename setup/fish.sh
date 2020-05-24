@@ -11,6 +11,11 @@ source ${scriptpath}/lib/util.sh $0
 sudo chown -R $USER /usr/local
 brew update
 brew install fish
-echo_color "Make sure you run \"chsh -s `which fish`\" after you've added the path to the fish shell to \"/etc/shells\""
+which fish | sudo tee -a /etc/shells
+chsh -s `which fish`
+
+echo $C10_DOTFILES
+curl https://git.io/fisher --create-dirs -sLo $C10_DOTFILES/fish/functions/fisher.fish
+fish -c fisher
 
 royal_fin

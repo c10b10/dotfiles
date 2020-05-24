@@ -56,6 +56,7 @@ royal() {
         "Carpal-Tunnelness" \
         "Connectedness" \
         "Caffeinatedness" \
+        "Mindfulnessness" \
         "Mastermindness" \
         "Nippleness" \
         "Druidness" \
