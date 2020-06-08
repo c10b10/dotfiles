@@ -15,7 +15,7 @@ setup_brew() {
 }
 
 install_node() {
-    echo_color "Installing node ..."
+    echo_color "Installing node..."
     brew install node
     echo_done
 }

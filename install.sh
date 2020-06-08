@@ -15,20 +15,7 @@ symlinks=( \
     'npmrc' \
     'gitignore' \
     'gitconfig' \
-    # 'zlogin' \
-    # 'zshenv' \
-    # 'zshrc' \
-    # 'zmodules/zprezto' \
-    # 'zpreztorc' \
 )
-
-# Changes shell to zsh
-change_shell_to_zsh() {
-    if [[ $SHELL != *"zsh" ]]; then
-        echo_color "Changing shell to zsh..."
-        chsh -s `which zsh`
-    fi
-}
 
 setup_fish() {
     echo_color "Installing fish config..."
@@ -61,7 +48,7 @@ link_config_files() {
 dotpath=`dirname "$0"` dotpath=`cd "$dotpath" && pwd`
 source ${dotpath}/setup/lib/util.sh $0
 
-setup_fish
+# setup_fish
 
 # Create symlinks for the config files
 link_config_files

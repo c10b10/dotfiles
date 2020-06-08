@@ -8,9 +8,8 @@ source ${scriptpath}/lib/util.sh $0
 # ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Change permissions to avoid permissions errors on brew update
-sudo chown -R $USER /usr/local
+# sudo chown -R $USER /usr/local
 brew update
-brew tap homebrew/dupes
 
 # Install formulae
 # brew install ctags-exuberant

@@ -31,16 +31,13 @@ apps=(
   limechat
   # QL plugins:
   qlcolorcode
-  qlmarkdown
-  qlprettypatch
   qlstephen
+  qlmarkdown
   quicklook-json
-  quicklook-csv
-  betterzipql
   qlimagesize
-  webpquicklook
   suspicious-package
-  keepingyouawake
+  quicklookase
+  qlvideo
 )
 
 brew install caskroom/cask/brew-cask
