@@ -92,7 +92,17 @@ end
 #     prepend_to_path './node_modules/.bin'
 # end
 
-prepend_to_path "$C10_DOTFILES/bin"
+__prepend_to_path "$C10_DOTFILES/bin"
+
+# Golang
+set -gx GO111MODULE on
+set -gx GOPRIVATE "gitlab.com/airportlabs"
+
+# Mongo
+__prepend_to_path "/usr/local/opt/mongodb-community@4.2/bin"
+
+__prepend_to_path "/usr/local/go/bin"
+__prepend_to_path (go env GOPATH)"/bin"
 
 . $C10_DOTFILES/fish/extras/aliases.fish
 
