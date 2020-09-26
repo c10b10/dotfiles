@@ -6,3 +6,4 @@
 *.sql
 tags
 node_modules/*
+conf.d

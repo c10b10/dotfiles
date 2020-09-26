@@ -1,3 +1,4 @@
+# Function file names that start with "__" are loaded first (in alphanumerical order)
 function __nvm_run
   set count (count $argv)
 

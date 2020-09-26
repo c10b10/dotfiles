@@ -3,6 +3,9 @@ function ...;   cd ../..; end
 function ....;  cd ../../..; end
 function .....; cd ../../../..; end
 
+starship init fish | source
+thefuck --alias | source
+
 # Add path to my dotfiles
 # DO NOT ADD A TRAILING SLASH!
 set -gx C10_DOTFILES (dirname (dirname (realpath (status -f))))
@@ -42,7 +45,6 @@ set -g fish_color_selection 'white'  '--bold'  '--background=brblack'
 set -g fish_color_user brgreen
 set -g fish_color_valid_path --underline
 
-
 # # Fix SaltStack UTF-8 issue
 set -gx LC_ALL "en_US.UTF-8"
 set -gx LANG "en_US.UTF-8"
@@ -52,27 +54,18 @@ set -gx LESS '-R'
 
 # Set PATH
 set -gx PATH "/sbin"
-function prepend_to_path -d "Prepend the given dir to PATH if it exists and is not already in it"
-    if test -d $argv[1]
-        if not contains $argv[1] $PATH
-            set -gx PATH "$argv[1]" $PATH
-        end
-    end
-end
-prepend_to_path "/usr/sbin"
-prepend_to_path "/bin"
-prepend_to_path "/usr/bin"
-prepend_to_path "/usr/local/bin"
-prepend_to_path "/usr/local/sbin"
+
+__prepend_to_path "/usr/sbin"
+__prepend_to_path "/bin"
+__prepend_to_path "/usr/bin"
+__prepend_to_path "/usr/local/bin"
+__prepend_to_path "/usr/local/sbin"
+
 
 # NVM
-if test -e $C10_DOTFILES/fish/functions/bass.fish
-    function nvm
-        bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
-    end
-
-    set -xg NVM_DIR $HOME/.nvm
-    nvm use default --silent
+if nvm >/dev/null 2>&1
+    __prepend_to_path $NVM_BIN
+    # nvm use default --silent
 end
 
 # Python
@@ -88,8 +81,8 @@ end
 #     set mp (manpath)
 #     set -xg MANPATH "$NPM_PACKAGES/share/man:$mp"
 #     set -xg NODE_PATH "$NPM_PACKAGES/lib/node_modules"
-#     prepend_to_path $NPM_PACKAGES/bin
-#     prepend_to_path './node_modules/.bin'
+#     __prepend_to_path $NPM_PACKAGES/bin
+#     __prepend_to_path './node_modules/.bin'
 # end
 
 __prepend_to_path "$C10_DOTFILES/bin"
@@ -130,5 +123,3 @@ function start_ssh_agent -d "Starts ssh agent if it's not online"
 end
 
 start_ssh_agent
-
-starship init fish | source

@@ -9,10 +9,11 @@ get_script_path() {
 
 source $(get_script_path $0)/spectrum.zsh
 
+# https://jonasjacek.github.io/colors/
 echo_color() {
-    bkg=$BG[${2-250}]
-    frg=$FG[${3-black}]
-    echo -e "${frg}${bkg}$1${FG[none]}${BG[none]}";
+    background=$BG[${2-250}]
+    foreground=$FG[${3-black}]
+    echo -e "${foreground}${background}$1${FG[none]}${BG[none]}";
 }
 
 echo_royal_suggestion() {
@@ -44,22 +45,23 @@ royal() {
     local attr names index1 index2
     attr=(\
         "Royal" \
-        "Unholy" \
+        "Relaxed" \
         "Epic" \
         "Potent" \
-        "Virile" \
-        "Evil" \
+        "Overbrewed" \
+        "Loving" \
         "Devious" \
     )
     names=(\
         "Future Myopicness" \
         "Carpal-Tunnelness" \
-        "Connectedness" \
+        "Curliness" \
         "Caffeinatedness" \
-        "Mindfulnessness" \
+        "Mindlessness" \
         "Mastermindness" \
         "Nippleness" \
         "Druidness" \
+        "Liberalness" \
     )
 
     # +1 added because zsh array are 1 indexed instead of 0
@@ -74,5 +76,5 @@ fin() {
 }
 
 royal_fin() {
-    fin yellow "<m(__)m> Done, Your $(royal)."
+    fin green "<m(__)m> Done, Your $(royal)."
 }

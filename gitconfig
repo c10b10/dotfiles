@@ -38,3 +38,7 @@
     unshelve = stash pop
 [credential]
 	helper = osxkeychain
+
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com/
+

@@ -1,15 +1,4 @@
-[submodule "zmodules/z-zsh"]
-	path = zmodules/z-zsh
-	url = https://github.com/rupa/z.git
-[submodule "zmodules/zprezto"]
-	path = zmodules/zprezto
-	url = https://github.com/c10b10/prezto.git
 [submodule "vim/bundle/vundle"]
 	path = vim/bundle/vundle
 	url = https://github.com/VundleVim/Vundle.vim.git
-[submodule "fish/modules/z-fish"]
-	path = fish/modules/z-fish
-	url = https://github.com/sjl/z-fish.git
-[submodule "fish/modules/charlie-theme"]
-	path = fish/modules/charlie-theme
-	url = https://github.com/c10b10/charlie-theme.fish
+h
