@@ -20,7 +20,7 @@
     default = simple
 
 [branch]
-    autosetuprebase = always
+    autosetuprebase = never
 
 [alias]
     sur = submodule update --init --recursive

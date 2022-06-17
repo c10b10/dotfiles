@@ -3,9 +3,6 @@ function ...;   cd ../..; end
 function ....;  cd ../../..; end
 function .....; cd ../../../..; end
 
-starship init fish | source
-thefuck --alias | source
-
 # Add path to my dotfiles
 # DO NOT ADD A TRAILING SLASH!
 set -gx C10_DOTFILES (dirname (dirname (realpath (status -f))))
@@ -61,6 +58,9 @@ __prepend_to_path "/usr/bin"
 __prepend_to_path "/usr/local/bin"
 __prepend_to_path "/usr/local/sbin"
 
+# Homebrew
+__prepend_to_path "/opt/homebrew/bin"
+
 
 # NVM
 if nvm >/dev/null 2>&1
@@ -92,12 +92,15 @@ set -gx GO111MODULE on
 set -gx GOPRIVATE "gitlab.com/airportlabs"
 
 # Mongo
-__prepend_to_path "/usr/local/opt/mongodb-community@4.2/bin"
+# __prepend_to_path "/usr/local/opt/mongodb-community@4.2/bin"
 
 __prepend_to_path "/usr/local/go/bin"
 __prepend_to_path (go env GOPATH)"/bin"
 
 . $C10_DOTFILES/fish/extras/aliases.fish
+
+thefuck --alias | source
+starship init fish | source
 
 # Autocmplete `g` as you would `git`
 function make_completion --argument alias command

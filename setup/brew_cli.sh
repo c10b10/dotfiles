@@ -11,7 +11,6 @@ plugins=(
   git
   grpcurl
   htop
-  mongodb-community@4.2
   openssl
   pstree
   rsync
