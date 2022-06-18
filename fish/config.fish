@@ -42,7 +42,7 @@ set -g fish_color_selection 'white'  '--bold'  '--background=brblack'
 set -g fish_color_user brgreen
 set -g fish_color_valid_path --underline
 
-# # Fix SaltStack UTF-8 issue
+# Fix SaltStack UTF-8 issue
 set -gx LC_ALL "en_US.UTF-8"
 set -gx LANG "en_US.UTF-8"
 
@@ -58,32 +58,14 @@ __prepend_to_path "/usr/bin"
 __prepend_to_path "/usr/local/bin"
 __prepend_to_path "/usr/local/sbin"
 
-# Homebrew
+# Homebrew and Yarn (installed w/ brew) binaries
 __prepend_to_path "/opt/homebrew/bin"
-
-
-# NVM
-if nvm >/dev/null 2>&1
-    __prepend_to_path $NVM_BIN
-    # nvm use default --silent
-end
 
 # Python
 if python -c "import virtualfish" >/dev/null 2>&1
     eval (python -m virtualfish)
     set -xg WORKON_HOME $HOME/.virtualenvs
 end
-
-# # Node
-# if command -v node >/dev/null 2>&1
-#     set -xg NPM_PACKAGES (npm config get prefix)
-#     set -e MANPATH
-#     set mp (manpath)
-#     set -xg MANPATH "$NPM_PACKAGES/share/man:$mp"
-#     set -xg NODE_PATH "$NPM_PACKAGES/lib/node_modules"
-#     __prepend_to_path $NPM_PACKAGES/bin
-#     __prepend_to_path './node_modules/.bin'
-# end
 
 __prepend_to_path "$C10_DOTFILES/bin"
 
@@ -94,13 +76,9 @@ set -gx GOPRIVATE "gitlab.com/airportlabs"
 # Mongo
 # __prepend_to_path "/usr/local/opt/mongodb-community@4.2/bin"
 
-__prepend_to_path "/usr/local/go/bin"
 __prepend_to_path (go env GOPATH)"/bin"
 
 . $C10_DOTFILES/fish/extras/aliases.fish
-
-thefuck --alias | source
-starship init fish | source
 
 # Autocmplete `g` as you would `git`
 function make_completion --argument alias command
@@ -126,3 +104,8 @@ function start_ssh_agent -d "Starts ssh agent if it's not online"
 end
 
 start_ssh_agent
+
+starship init fish | source
+
+# n (alternative to NVM)
+set -x N_PREFIX "$HOME/n"; contains "$N_PREFIX/bin" $PATH; or set -a PATH "$N_PREFIX/bin"

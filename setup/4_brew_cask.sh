@@ -4,6 +4,8 @@
 dotpath=$(git rev-parse --show-toplevel)
 source ${dotpath}/setup/lib/util.sh $0
 
+check_if_homebrew_installed
+
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 browsers=(
@@ -11,50 +13,49 @@ browsers=(
   tor-browser
 )
 communication=(
-  discord
-  gotomeeting
+  # discord
+  # gotomeeting
   # limechat
   skype
+  slack
   telegram
+  messenger
+  whatsapp
 )
 development=(
   dash
-  font-iosevka
-  font-iosevka-slab
   fork
   imageoptim
   iterm2
-  robo-3t
+  insomnia
+  notion
   visual-studio-code
+  openvpn
+  qmk-toolbox
 )
 essentials=(
+  adobe-acrobat-reader
   alfred
   bettertouchtool
   calibre
   dashlane
   dropbox
-  flux
   keepingyouawake
   kindle
   spotify
   the-unarchiver
   vlc
   xld
+  forklift
 )
 qlplugins=(
   qlcolorcode
-  qlimagesize
-  qlmarkdown
-  qlstephen
-  qlvideo
   quicklook-json
-  quicklookase
-  suspicious-package
+  qlstephen
+  qlmarkdown
 )
 torrenting=(
-  folx
   transmission
-  webtorrent
 )
 
 echo_color "We'll start installing brew cask apps in a moment.." _ yellow
@@ -70,18 +71,19 @@ function install_apps() {
   default="y"
   answer=$default
   for app in ${@:2}; do
-    if [ "$answer"  != 'a' ]; then
-      user_input=; vared -p "Install \"${app}\" [y/enter], skip it [n], or install it and all the rest of the ${app_category} [a]: " user_input
+    if [ "$answer" != 'a' ]; then
+      user_input=
+      vared -p "Install \"${app}\" [y/enter], skip it [n], or install it and all the rest of the ${app_category} [a]: " user_input
       case $user_input in
-        (y | Y | "") answer=$default;;
-        (a | A) answer="a";;
-        (*) answer="n";;
+      y | Y | "") answer=$default ;;
+      a | A) answer="a" ;;
+      *) answer="n" ;;
       esac
     fi
 
-    if [ "$answer"  = 'y' ] || [ "$answer"  = 'a' ]; then
+    if [ "$answer" = 'y' ] || [ "$answer" = 'a' ]; then
       echo_color "Installing \"${app}\"..." _ yellow
-      brew cask install --appdir=\"/Applications\" $app
+      brew install --cask --appdir=\"/Applications\" $app
     else
       echo_color "Skipped \"${app}\"." _ yellow
     fi
@@ -89,11 +91,11 @@ function install_apps() {
   echo_color "✔ Finished with $app_category \"$apps_string\"." _ green
 }
 
-install_apps "browsers" $browsers 
+install_apps "browsers" $browsers
 install_apps "communication apps" $communication
 install_apps "development tools" $development
-install_apps "essential apps" $essentials 
-install_apps "torrenting apps" $torrenting 
+install_apps "essential apps" $essentials
+install_apps "torrenting apps" $torrenting
 
 # Enable QL plugins
 echo_color "Activating QuickLook plugins..." _ 13
@@ -103,7 +105,7 @@ xattr -r ~/Library/QuickLook
 echo_color "✔ QuickLook plugins activated. To disable them run \"xattr -d -r com.apple.quarantine ~/Library/QuickLook\"." _ green
 
 context=${1}
-if [ "$context"  != 'installer' ]; then
+if [ "$context" != 'installer' ]; then
   royal_fin
 fi
 

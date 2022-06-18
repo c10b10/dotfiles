@@ -12,10 +12,6 @@ else
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
-# Change permissions to avoid permissions errors on brew update
-echo_color "Changing \"/usr/local\" owner to \"$USER\"..." _ 13
-sudo chown -R $USER /usr/local
-
 echo_color "Updating brew..." _ 13
 brew update
 

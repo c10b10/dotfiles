@@ -1,44 +1,43 @@
 [user]
-    name = Alex Ciobica
-    email = alex.ciobica@gmail.com
+name = Alex Ciobica
+email = alex.ciobica@gmail.com
 
 [github]
-    user = c10b10
+user = c10b10
 
 [core]
-    excludesfile = ~/.gitignore
-    mergeoptions = --no-edit
-    editor = /usr/bin/vim
+excludesfile = ~/.gitignore
+mergeoptions = --no-edit
+editor = /opt/homebrew/bin/nvim
 
 [difftool]
-    prompt = false
+prompt = false
 
 [web]
-    browser = open
+browser = open
 
 [push]
-    default = simple
+default = simple
 
 [branch]
-    autosetuprebase = never
+autosetuprebase = never
 
 [alias]
-    sur = submodule update --init --recursive
-    l = log -18 --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset'
-    ll  = log --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset'
-    gl  = log -12 --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %s %C(black bold)(by %an)%Creset%C(yellow bold)%d%Creset%n'
-    gll = log --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %s %C(black bold)(%cr by %an)%Creset%C(yellow bold)%d%Creset%n'
+sur = submodule update --init --recursive
+l = log -18 --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset'
+ll = log --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset'
+gl = log -12 --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %s %C(black bold)(by %an)%Creset%C(yellow bold)%d%Creset%n'
+gll = log --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %s %C(black bold)(%cr by %an)%Creset%C(yellow bold)%d%Creset%n'
 
-    ack = log --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset' --full-history -S 
+ack = log --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset' --full-history -S
 
-    unstage = reset HEAD
-    uns = reset HEAD
+unstage = reset HEAD
+uns = reset HEAD
 
-    shelve = stash save --include-untracked
-    unshelve = stash pop
+shelve = stash save --include-untracked
+unshelve = stash pop
 [credential]
-	helper = osxkeychain
+helper = osxkeychain
 
 [url "git@gitlab.com:"]
-	insteadOf = https://gitlab.com/
-
+insteadOf = https://gitlab.com/
