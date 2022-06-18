@@ -20,6 +20,7 @@ plugins=(
   tree
   wget
   yarn
+  nvim
   go@1.17
   n
 )

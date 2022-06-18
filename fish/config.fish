@@ -52,14 +52,14 @@ set -gx LESS '-R'
 # Set PATH
 set -gx PATH "/sbin"
 
-__prepend_to_path "/usr/sbin"
-__prepend_to_path "/bin"
-__prepend_to_path "/usr/bin"
-__prepend_to_path "/usr/local/bin"
-__prepend_to_path "/usr/local/sbin"
+fish_add_path -pP "/usr/sbin"
+fish_add_path -pP "/bin"
+fish_add_path -pP "/usr/bin"
+fish_add_path -pP "/usr/local/bin"
+fish_add_path -pP "/usr/local/sbin"
 
 # Homebrew and Yarn (installed w/ brew) binaries
-__prepend_to_path "/opt/homebrew/bin"
+fish_add_path -pP "/opt/homebrew/bin"
 
 # Python
 if python -c "import virtualfish" >/dev/null 2>&1
@@ -67,16 +67,25 @@ if python -c "import virtualfish" >/dev/null 2>&1
     set -xg WORKON_HOME $HOME/.virtualenvs
 end
 
-__prepend_to_path "$C10_DOTFILES/bin"
-
 # Golang
-set -gx GO111MODULE on
-set -gx GOPRIVATE "gitlab.com/airportlabs"
+if command -v go &> /dev/null
+    set -gx GO111MODULE on
+    set -gx GOPRIVATE "gitlab.com/airportlabs"
+    mkdir -p (go env GOPATH)"/bin"
+    fish_add_path -pP (go env GOPATH)"/bin"
+end
+
+# n (alternative to NVM)
+if command -v n &> /dev/null
+    set -x N_PREFIX "$HOME/n"
+    mkdir -p "$N_PREFIX/bin"
+    fish_add_path -pP "$N_PREFIX/bin"
+end
 
 # Mongo
-# __prepend_to_path "/usr/local/opt/mongodb-community@4.2/bin"
+# fish_add_path -pP "/usr/local/opt/mongodb-community@4.2/bin"
 
-__prepend_to_path (go env GOPATH)"/bin"
+fish_add_path -pP "$C10_DOTFILES/bin"
 
 . $C10_DOTFILES/fish/extras/aliases.fish
 
@@ -106,6 +115,3 @@ end
 start_ssh_agent
 
 starship init fish | source
-
-# n (alternative to NVM)
-set -x N_PREFIX "$HOME/n"; contains "$N_PREFIX/bin" $PATH; or set -a PATH "$N_PREFIX/bin"

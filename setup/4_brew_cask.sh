@@ -83,7 +83,7 @@ function install_apps() {
 
     if [ "$answer" = 'y' ] || [ "$answer" = 'a' ]; then
       echo_color "Installing \"${app}\"..." _ yellow
-      brew install --cask --appdir=\"/Applications\" $app
+      brew install --cask $app
     else
       echo_color "Skipped \"${app}\"." _ yellow
     fi
