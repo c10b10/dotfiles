@@ -62,10 +62,16 @@ fish_add_path -pP "/usr/local/sbin"
 fish_add_path -pP "/opt/homebrew/bin"
 
 # Python
-if python -c "import virtualfish" >/dev/null 2>&1
-    eval (python -m virtualfish)
-    set -xg WORKON_HOME $HOME/.virtualenvs
-end
+#if python -c "import virtualfish" >/dev/null 2>&1
+#    eval (python -m virtualfish)
+#    set -xg WORKON_HOME $HOME/.virtualenvs
+#end
+
+# Pyenv
+set -x PYENV_ROOT $HOME/.pyenv
+fish_add_path -pP "$PYENV_ROOT/bin"
+
+pyenv init - | source
 
 # Golang
 if command -v go &> /dev/null
@@ -84,6 +90,9 @@ end
 
 # Mongo
 # fish_add_path -pP "/usr/local/opt/mongodb-community@4.2/bin"
+
+# Meteor
+fish_add_path -pP "/home/stilgar/.meteor"
 
 fish_add_path -pP "$C10_DOTFILES/bin"
 
